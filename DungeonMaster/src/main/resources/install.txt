@@ -1,0 +1,43 @@
+These directions are for Windows. 
+There are two methods to run the game: with or without a command prompt.
+
+First, install the JRE - you can just use the install defaults.
+Then, unzip the game WITH DIRECTORIES (if using WinZip, make sure "Use Folder Names" is checked) to any directory.
+
+----------------------
+With a command prompt:
+----------------------
+Open a prompt and change to the directory of the DMJava game (wherever you unzipped it - there should be a bunch of .class files there and some pics).
+
+Add the JRE bin directory to your path by typing:
+set PATH="%PATH%;C:\Program Files\Java\j2re1.4.0\bin"
+(your path to the bin directory may differ)
+
+Run the game by typing:
+java dmnew
+
+Run the editor by typing:
+java DMEditor
+
+Note that this is CASE SENSITIVE! "dmnew" is all lower case, while "DMEditor" has the first three letters capitalized.
+(You can set up batch files or modify your autoexec.bat to avoid all this typing every time.)
+
+-------------------------
+Without a command prompt:
+-------------------------
+Create a shortcut in the Start Menu, on the desktop, or wherever you want.
+
+One way is to right click, go to New ->, and click Shortcut.
+It will ask for a command line. Browse for or type the path to javaw.exe. (It will be in the bin directory of the JRE.) After it, add "-cp. dmnew" or "-cp . DMEditor", depending on which you are creating a shortcut for. Depending on where you installed things, the shortcut commmand line may look like
+"C:\Program Files\Java\j2re1.4.0\bin\javaw.exe" "-cp . dmnew"
+
+Click Next.
+
+Give the shortcut a name ("Dungeon Master Java" or something).
+
+Click Finish.
+(You aren't really finished. If you double click it now, it will say it can't find the main class file.)
+
+Right click the newly created shortcut and select "Properties". Change the "Start In" field to be the DM Java game directory (wherever you unzipped it). For example, "D:\DMJava"
+
+Now you are done. Double click to run.

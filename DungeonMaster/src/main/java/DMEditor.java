@@ -1,6 +1,8 @@
 //?copy and paste (maybe just one square at a time)
 //?make possible to add projs to map (how to draw?)
 
+import org.apache.commons.io.IOUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -108,7 +110,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
     static EventWizard eventwizard;
     PartyInfoDialog partyinfo;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try {
             FileInputStream in = new FileInputStream("editorfont.ttf");
             dungfont = Font.createFont(Font.TRUETYPE_FONT, in);
@@ -143,7 +145,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         frame = new DMEditor(args);
     }
     
-    public DMEditor(String[] args) {
+    public DMEditor(String[] args) throws IOException {
         super("Dungeon Master Editor");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         WindowListener l = new WindowAdapter() {
@@ -225,7 +227,12 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         buttonbox.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         
         ImageIcon[] micon = new ImageIcon[29];
-        micon[0] = new ImageIcon("Icons" + File.separator + "addmon.gif");
+        
+        InputStream is = getClass().getClassLoader().getResourceAsStream("Icons" + File.separator + "addmon.gif");
+        byte[] resourceByteArray = IOUtils.toByteArray(is);
+        //micon[0] = new ImageIcon("Icons" + File.separator + "addmon.gif");
+        micon[0] = new ImageIcon(resourceByteArray);
+        
         micon[1] = new ImageIcon("Icons" + File.separator + "additem.gif");
         micon[2] = MapPanel.WallIcon;
         micon[3] = MapPanel.DoorIcon;
