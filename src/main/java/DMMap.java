@@ -5,33 +5,35 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+import static util.Utils.getImageIconFromFile;
+
 class DMMap extends JPanel implements MouseListener {
-    
-    public static final ImageIcon WallIconS = new ImageIcon("Icons" + File.separator + "wall-s.gif");
-    public static final ImageIcon DoorIconS = new ImageIcon("Icons" + File.separator + "door-s.gif");
-    public static final ImageIcon FakeWallIconS = new ImageIcon("Icons" + File.separator + "fakewall-s.gif");
-    public static final ImageIcon AltarIconS = new ImageIcon("Icons" + File.separator + "altar-s.gif");
-    public static final ImageIcon AlcoveIconS = new ImageIcon("Icons" + File.separator + "alcove-s.gif");
-    public static final ImageIcon FountainIconS = new ImageIcon("Icons" + File.separator + "fountain-s.gif");
-    public static final ImageIcon StairsDownIconS = new ImageIcon("Icons" + File.separator + "stairsdown-s.gif");
-    public static final ImageIcon StairsUpIconS = new ImageIcon("Icons" + File.separator + "stairsup-s.gif");
-    public static final ImageIcon TeleportIconS = new ImageIcon("Icons" + File.separator + "teleport-s.gif");
-    public static final ImageIcon PitIconS = new ImageIcon("Icons" + File.separator + "pit-s.gif");
-    public static final ImageIcon MirrorIconS = new ImageIcon("Icons" + File.separator + "mirror-s.gif");
-    public static final ImageIcon WritingIconS = new ImageIcon("Icons" + File.separator + "writing-s.gif");
-    public static final ImageIcon LauncherIconS = new ImageIcon("Icons" + File.separator + "launcher-s.gif");
-    public static final ImageIcon GeneratorIconS = new ImageIcon("Icons" + File.separator + "generator-s.gif");
-    public static final ImageIcon WallSwitchIconS = new ImageIcon("Icons" + File.separator + "wallswitch-s.gif");
-    public static final ImageIcon FloorSwitchIconS = new ImageIcon("Icons" + File.separator + "floorswitch-s.gif");
-    public static final ImageIcon SconceIconS = new ImageIcon("Icons" + File.separator + "sconce-s.gif");
-    public static final ImageIcon DecorationIconS = new ImageIcon("Icons" + File.separator + "decoration-s.gif");
-    public static final ImageIcon FDecorationIconS = new ImageIcon("Icons" + File.separator + "fdecoration-s.gif");
-    public static final ImageIcon PillarIconS = new ImageIcon("Icons" + File.separator + "pillar-s.gif");
-    public static final ImageIcon InvisibleWallIconS = new ImageIcon("Icons" + File.separator + "invisiblewall-s.gif");
-    public static final ImageIcon EventIconS = new ImageIcon("Icons" + File.separator + "event-s.gif");
-    public static final ImageIcon StormIconS = new ImageIcon("Icons" + File.separator + "stormbringer-s.gif");
-    public static final ImageIcon GemIconS = new ImageIcon("Icons" + File.separator + "powergem-s.gif");
-    public static final ImageIcon FulYaIconS = new ImageIcon("Icons" + File.separator + "fulya-s.gif");
+    //public static final String pathToImageIcon =
+    public static final ImageIcon WallIconS = getImageIconFromFile("Icons" + File.separator + "wall-s.gif");
+    public static final ImageIcon DoorIconS = getImageIconFromFile("Icons" + File.separator + "door-s.gif");
+    public static final ImageIcon FakeWallIconS = getImageIconFromFile("Icons" + File.separator + "fakewall-s.gif");
+    public static final ImageIcon AltarIconS = getImageIconFromFile("Icons" + File.separator + "altar-s.gif");
+    public static final ImageIcon AlcoveIconS = getImageIconFromFile("Icons" + File.separator + "alcove-s.gif");
+    public static final ImageIcon FountainIconS = getImageIconFromFile("Icons" + File.separator + "fountain-s.gif");
+    public static final ImageIcon StairsDownIconS = getImageIconFromFile("Icons" + File.separator + "stairsdown-s.gif");
+    public static final ImageIcon StairsUpIconS = getImageIconFromFile("Icons" + File.separator + "stairsup-s.gif");
+    public static final ImageIcon TeleportIconS = getImageIconFromFile("Icons" + File.separator + "teleport-s.gif");
+    public static final ImageIcon PitIconS = getImageIconFromFile("Icons" + File.separator + "pit-s.gif");
+    public static final ImageIcon MirrorIconS = getImageIconFromFile("Icons" + File.separator + "mirror-s.gif");
+    public static final ImageIcon WritingIconS = getImageIconFromFile("Icons" + File.separator + "writing-s.gif");
+    public static final ImageIcon LauncherIconS = getImageIconFromFile("Icons" + File.separator + "launcher-s.gif");
+    public static final ImageIcon GeneratorIconS = getImageIconFromFile("Icons" + File.separator + "generator-s.gif");
+    public static final ImageIcon WallSwitchIconS = getImageIconFromFile("Icons" + File.separator + "wallswitch-s.gif");
+    public static final ImageIcon FloorSwitchIconS = getImageIconFromFile("Icons" + File.separator + "floorswitch-s.gif");
+    public static final ImageIcon SconceIconS = getImageIconFromFile("Icons" + File.separator + "sconce-s.gif");
+    public static final ImageIcon DecorationIconS = getImageIconFromFile("Icons" + File.separator + "decoration-s.gif");
+    public static final ImageIcon FDecorationIconS = getImageIconFromFile("Icons" + File.separator + "fdecoration-s.gif");
+    public static final ImageIcon PillarIconS = getImageIconFromFile("Icons" + File.separator + "pillar-s.gif");
+    public static final ImageIcon InvisibleWallIconS = getImageIconFromFile("Icons" + File.separator + "invisiblewall-s.gif");
+    public static final ImageIcon EventIconS = getImageIconFromFile("Icons" + File.separator + "event-s.gif");
+    public static final ImageIcon StormIconS = getImageIconFromFile("Icons" + File.separator + "stormbringer-s.gif");
+    public static final ImageIcon GemIconS = getImageIconFromFile("Icons" + File.separator + "powergem-s.gif");
+    public static final ImageIcon FulYaIconS = getImageIconFromFile("Icons" + File.separator + "fulya-s.gif");
     
     private dmnew dm;
     private boolean needupdate = true;

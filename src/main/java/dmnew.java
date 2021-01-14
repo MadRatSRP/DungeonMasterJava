@@ -89,13 +89,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
 
-/*
-import javax.media.*;
-import javax.media.protocol.*;
-import java.net.URL;
-import java.net.MalformedURLException;
-*/
-
 public class dmnew extends JFrame implements ActionListener, MouseListener, ComponentListener, Runnable {//, ControllerListener {
     static JFrame frame = null;
     static Thread runner;
@@ -2350,15 +2343,15 @@ public class dmnew extends JFrame implements ActionListener, MouseListener, Comp
             }
             if (mapchanging) {
                 so.writeInt(mapstochange.size());
-                for (Iterator i = mapstochange.iterator(); i.hasNext(); ) {
-                    so.writeObject(i.next());
+                for (Object object : mapstochange) {
+                    so.writeObject(object);
                 }
             }
             if (cloudchanging) {
                 PoisonCloud tempcloud;
                 so.writeInt(cloudstochange.size());
-                for (Iterator i = cloudstochange.iterator(); i.hasNext(); ) {
-                    tempcloud = (PoisonCloud) i.next();
+                for (Object object : cloudstochange) {
+                    tempcloud = (PoisonCloud) object;
                     so.writeInt(tempcloud.level);
                     so.writeInt(tempcloud.x);
                     so.writeInt(tempcloud.y);
@@ -2418,26 +2411,26 @@ public class dmnew extends JFrame implements ActionListener, MouseListener, Comp
     
     
     public boolean setGameFile(boolean loading) {
-                /*
-                String returnVal;
-                chooser.setDirectory("Saves");
-                if (loading) {
-                        chooser.setMode(FileDialog.LOAD);
-                        chooser.setTitle("Load a Saved Game");
-                        chooser.show();
-                        returnVal = chooser.getFile();
-                }
-                else {
-                        chooser.setMode(FileDialog.SAVE);
-                        chooser.setTitle("Save This Game");
-                        chooser.show();
-                        returnVal = chooser.getFile();
-                }
-                if (returnVal!=null) {
-                        gamefile = new File(chooser.getDirectory()+returnVal);
-                        return true;
-                }
-                */
+        /*
+            String returnVal;
+            chooser.setDirectory("Saves");
+            if (loading) {
+                    chooser.setMode(FileDialog.LOAD);
+                    chooser.setTitle("Load a Saved Game");
+                    chooser.show();
+                    returnVal = chooser.getFile();
+            }
+            else {
+                    chooser.setMode(FileDialog.SAVE);
+                    chooser.setTitle("Save This Game");
+                    chooser.show();
+                    returnVal = chooser.getFile();
+            }
+            if (returnVal!=null) {
+                    gamefile = new File(chooser.getDirectory()+returnVal);
+                    return true;
+            }
+        */
         int returnVal;
         chooser.setCurrentDirectory(new File("Saves"));
         if (loading) {

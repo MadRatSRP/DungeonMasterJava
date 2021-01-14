@@ -1,13 +1,13 @@
 //?copy and paste (maybe just one square at a time)
 //?make possible to add projs to map (how to draw?)
 
-import org.apache.commons.io.IOUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+
+import static util.Utils.getImageIconFromFile;
 
 class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFilter {
     boolean ADDSTAIRS = true;//true if should automatically add corresponding stairs above/below new stairs
@@ -110,6 +110,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
     static EventWizard eventwizard;
     PartyInfoDialog partyinfo;
     
+    private String pathToIconsFolder; 
+    
     public static void main(String[] args) throws IOException {
         try {
             FileInputStream in = new FileInputStream("editorfont.ttf");
@@ -147,6 +149,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
     
     public DMEditor(String[] args) throws IOException {
         super("Dungeon Master Editor");
+        
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         WindowListener l = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -205,7 +208,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
             }
         };
         addWindowListener(l);
-        setIconImage(Toolkit.getDefaultToolkit().createImage("Icons" + File.separator + "dmjicon.gif"));
+        setIconImage(Toolkit.getDefaultToolkit().createImage(pathToIconsFolder + "dmjicon.gif"));
         cp = getContentPane();
         
         //mapclick= new MapClick();
@@ -227,13 +230,12 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         buttonbox.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         
         ImageIcon[] micon = new ImageIcon[29];
+    
+        pathToIconsFolder = "Icons" + File.separator;
+    
+        micon[0] = getImageIconFromFile(pathToIconsFolder + "addmon.gif");
+        micon[1] = getImageIconFromFile(pathToIconsFolder + "additem.gif");
         
-        InputStream is = getClass().getClassLoader().getResourceAsStream("Icons" + File.separator + "addmon.gif");
-        byte[] resourceByteArray = IOUtils.toByteArray(is);
-        //micon[0] = new ImageIcon("Icons" + File.separator + "addmon.gif");
-        micon[0] = new ImageIcon(resourceByteArray);
-        
-        micon[1] = new ImageIcon("Icons" + File.separator + "additem.gif");
         micon[2] = MapPanel.WallIcon;
         micon[3] = MapPanel.DoorIcon;
         micon[4] = MapPanel.FakeWallIcon;
@@ -262,19 +264,20 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         micon[26] = MapPanel.StormIcon;
         micon[27] = MapPanel.GemIcon;
         micon[28] = MapPanel.FulYaIcon;
+        
         final String[] maction = {"M", "I", "1", "d", "2", "]", "f", "v", "^", "t", "p", "m", "w", "l", "g", "/", "\\", "s", "S", "}", "D", "F", "P", "i", "E", "W", "!", "G", "y"};
         final String[] mtip = {"Monster", "Item", "Wall <-> Floor", "Door", "Illusionary Wall <-> Floor", "Alcove/VI Altar", "Fountain", "Stairs Down",
             "Stairs Up", "Teleport", "Pit", "Mirror", "Writing", "Launcher", "Generator", "Wall Switch", "Multiple Wall Switches",
             "Floor Switch", "Multiple Floor Switches", "Sconce", "Decoration", "Floor Decoration", "Pillar", "Invisible Wall",
             "Event Square", "Game Win Square", "Stormbringer", "Power Gem", "FulYa Pit"};
         
-        JButton uplevelbutton = new JButton(new ImageIcon("Icons" + File.separator + "up.gif"));
+        JButton uplevelbutton = new JButton(getImageIconFromFile(pathToIconsFolder + "up.gif"));
         uplevelbutton.setFocusable(false);
         uplevelbutton.setPreferredSize(new Dimension(36, 42));
         uplevelbutton.setActionCommand("Up");
         uplevelbutton.addActionListener(this);
         buttonbox.add(uplevelbutton);
-        JButton downlevelbutton = new JButton(new ImageIcon("Icons" + File.separator + "down.gif"));
+        JButton downlevelbutton = new JButton(getImageIconFromFile(pathToIconsFolder + "down.gif"));
         downlevelbutton.setFocusable(false);
         downlevelbutton.setPreferredSize(new Dimension(36, 42));
         downlevelbutton.setActionCommand("Down");
@@ -284,7 +287,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         
         menulisten = new MenuListen();
         
-        undobutton = new JButton(new ImageIcon("Icons" + File.separator + "undo.gif"));
+        undobutton = new JButton(getImageIconFromFile(pathToIconsFolder + "undo.gif"));
         undobutton.setFocusable(false);
         undobutton.setPreferredSize(new Dimension(42, 42));
         undobutton.setMinimumSize(new Dimension(42, 42));
@@ -295,7 +298,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         buttonbox.add(undobutton);
         buttonbox.add(Box.createHorizontalStrut(10));
         
-        JToggleButton zoombutton = new JToggleButton(new ImageIcon("Icons" + File.separator + "zoom.gif"));
+        JToggleButton zoombutton = new JToggleButton(getImageIconFromFile(pathToIconsFolder + "zoom.gif"));
         zoombutton.setFocusable(false);
         zoombutton.setPreferredSize(new Dimension(42, 42));
         zoombutton.setMinimumSize(new Dimension(42, 42));
@@ -308,7 +311,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         
         ButtonGroup mgroup = new ButtonGroup();
         
-        JToggleButton monbutton = new JToggleButton(new ImageIcon("Icons" + File.separator + "nomons.gif"));
+        JToggleButton monbutton = new JToggleButton(getImageIconFromFile(pathToIconsFolder + "nomons.gif"));
         monbutton.setFocusable(false);
         monbutton.setPreferredSize(new Dimension(42, 42));
         monbutton.setMinimumSize(new Dimension(42, 42));
@@ -319,7 +322,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         mgroup.add(monbutton);
         buttonbox.add(monbutton);
         
-        JToggleButton ghostbutton = new JToggleButton(new ImageIcon("Icons" + File.separator + "noghosts.gif"));
+        JToggleButton ghostbutton = new JToggleButton(getImageIconFromFile(pathToIconsFolder + "noghosts.gif"));
         ghostbutton.setFocusable(false);
         ghostbutton.setPreferredSize(new Dimension(42, 42));
         ghostbutton.setMinimumSize(new Dimension(42, 42));
@@ -595,149 +598,167 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         requestFocusInWindow();
     }
     
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Zoom")) {
-            ZOOMING = !ZOOMING;
-            mappanel.setZoom();
-            mappanel.invalidate();
-            vspacebox.invalidate();
-            mpane.validate();
-            spane.validate();
-            mappanel.repaint();
-        } else if (e.getActionCommand().equals("Up")) {
-            if (currentlevel == 0 || SQUARELOCKED) {
-                Toolkit.getDefaultToolkit().beep();
-                return;
-            }
-            mappanel.setVisible(false);
-            currentlevel--;
-            mapdata = (MapData[][]) maplevels.get(currentlevel);
-            mappanel.clearTargets();
-            mappanel.repaint();
-            mappanel.setVisible(true);
-            if (currentlevel == 0) {
-                if (mbutton[8].isSelected()) mbutton[2].doClick();
-                mbutton[8].setEnabled(false);
-            }
-        } else if (e.getActionCommand().equals("Down")) {
-            if (SQUARELOCKED) {
-                Toolkit.getDefaultToolkit().beep();
-                return;
-            }
-            if (currentlevel == MAPLEVELS - 1) {
-                //pop up option to confirm addition of a new level
-                int returnval = JOptionPane.showConfirmDialog(frame, "Add additional level to map?", "Add Level", JOptionPane.YES_NO_OPTION);
-                if (returnval == JOptionPane.YES_OPTION) {
-                    mappanel.setVisible(false);
-                    MAPLEVELS++;
-                    currentlevel++;
-                    JMenuItem newlevelitem = new JMenuItem("Level " + currentlevel);
-                    if (currentlevel < 10) newlevelitem.setMnemonic(Character.forDigit(currentlevel, 10));
-                    newlevelitem.addActionListener(menulisten);
-                    levelmenu.add(newlevelitem);
-                    mapdata = new MapData[MAPWIDTH][MAPHEIGHT];
-                    for (int y = 0; y < MAPHEIGHT; y++) {
-                        for (int x = 0; x < MAPWIDTH; x++) {
-                            mapdata[x][y] = new WallData();
-                        }
-                    }
-                    maplevels.add(mapdata);
-                    mappanel.clearTargets();
-                    mappanel.repaint();
-                    mappanel.setVisible(true);
-                    mbutton[8].setEnabled(true);
+    public void actionPerformed(ActionEvent event) {
+        switch (event.getActionCommand()) {
+            case "Zoom":
+                ZOOMING = !ZOOMING;
+                mappanel.setZoom();
+                mappanel.invalidate();
+                vspacebox.invalidate();
+                mpane.validate();
+                spane.validate();
+                mappanel.repaint();
+                break;
+            case "Up":
+                if (currentlevel == 0 || SQUARELOCKED) {
+                    Toolkit.getDefaultToolkit().beep();
                     return;
-                } else return;
-            }
-            mappanel.setVisible(false);
-            currentlevel++;
-            mapdata = (MapData[][]) maplevels.get(currentlevel);
-            mappanel.clearTargets();
-            mappanel.repaint();
-            mappanel.setVisible(true);
-            mbutton[8].setEnabled(true);
-        } else if (e.getActionCommand().equals("Monster")) {
-            int sub = 5;
-            String squarestring = ((JButton) e.getSource()).getText();
-            if (squarestring.equals("NW")) sub = 0;
-            else if (squarestring.equals("NE")) sub = 1;
-            else if (squarestring.equals("SE")) sub = 2;
-            else if (squarestring.equals("SW")) sub = 3;
-            
-            String[] options = {"Edit", "Delete", "Change Corner", "Cancel"};
-            int choice = JOptionPane.showOptionDialog(frame, "What do you want to do to that monster?", "Options", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            if (choice == 0) {
-                MonsterData olddata = (MonsterData) monhash.get(currentlevel + "," + lockx + "," + locky + "," + sub);
-                //MonsterData tempdata = (new MonsterWizard(frame,currentlevel,lockx,locky,olddata)).getData();
-                monsterwizard.setMonster(olddata, currentlevel, lockx, locky);
-                MonsterData tempdata = monsterwizard.getData();
-                if (tempdata != null) {
-                    if (tempdata.subsquare == 5 && sub != 5) {
-                        //changed a non sub5 mon into a sub5 mon
-                        for (int i = 0; i < 4; i++) {
-                            monhash.remove(currentlevel + "," + lockx + "," + locky + "," + i);
-                            mapdata[lockx][locky].hasmonin[i] = false;
+                }
+                mappanel.setVisible(false);
+                currentlevel--;
+                mapdata = (MapData[][]) maplevels.get(currentlevel);
+                mappanel.clearTargets();
+                mappanel.repaint();
+                mappanel.setVisible(true);
+                if (currentlevel == 0) {
+                    if (mbutton[8].isSelected()) mbutton[2].doClick();
+                    mbutton[8].setEnabled(false);
+                }
+                break;
+            case "Down":
+                if (SQUARELOCKED) {
+                    Toolkit.getDefaultToolkit().beep();
+                    return;
+                }
+                if (currentlevel == MAPLEVELS - 1) {
+                    //pop up option to confirm addition of a new level
+                    int returnval = JOptionPane.showConfirmDialog(frame, "Add additional level to map?", "Add Level", JOptionPane.YES_NO_OPTION);
+                    if (returnval == JOptionPane.YES_OPTION) {
+                        mappanel.setVisible(false);
+                        MAPLEVELS++;
+                        currentlevel++;
+                        JMenuItem newlevelitem = new JMenuItem("Level " + currentlevel);
+                        if (currentlevel < 10) newlevelitem.setMnemonic(Character.forDigit(currentlevel, 10));
+                        newlevelitem.addActionListener(menulisten);
+                        levelmenu.add(newlevelitem);
+                        mapdata = new MapData[MAPWIDTH][MAPHEIGHT];
+                        for (int y = 0; y < MAPHEIGHT; y++) {
+                            for (int x = 0; x < MAPWIDTH; x++) {
+                                mapdata[x][y] = new WallData();
+                            }
                         }
-                        sub = 5;
-                        mapdata[lockx][locky].hasmonin[4] = true;
-                    } else if (tempdata.subsquare != 5 && sub == 5) {
-                        //changed a sub5 mon into a non sub5
-                        monhash.remove(currentlevel + "," + lockx + "," + locky + "," + sub);
+                        maplevels.add(mapdata);
+                        mappanel.clearTargets();
+                        mappanel.repaint();
+                        mappanel.setVisible(true);
+                        mbutton[8].setEnabled(true);
+                        return;
+                    } else return;
+                }
+                mappanel.setVisible(false);
+                currentlevel++;
+                mapdata = (MapData[][]) maplevels.get(currentlevel);
+                mappanel.clearTargets();
+                mappanel.repaint();
+                mappanel.setVisible(true);
+                mbutton[8].setEnabled(true);
+                break;
+            case "Monster":
+                int sub = 5;
+                String squarestring = ((JButton) event.getSource()).getText();
+                switch (squarestring) {
+                    case "NW":
                         sub = 0;
-                        mapdata[lockx][locky].hasmonin[4] = false;
-                        mapdata[lockx][locky].hasmonin[0] = true;
-                    } else tempdata.subsquare = sub;
-                    monhash.put(currentlevel + "," + lockx + "," + locky + "," + sub, tempdata);
+                        break;
+                    case "NE":
+                        sub = 1;
+                        break;
+                    case "SE":
+                        sub = 2;
+                        break;
+                    case "SW":
+                        sub = 3;
+                        break;
+                }
+            
+                String[] options = {"Edit", "Delete", "Change Corner", "Cancel"};
+                int choice = JOptionPane.showOptionDialog(frame, "What do you want to do to that monster?", "Options", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                if (choice == 0) {
+                    MonsterData olddata = (MonsterData) monhash.get(currentlevel + "," + lockx + "," + locky + "," + sub);
+                    //MonsterData tempdata = (new MonsterWizard(frame,currentlevel,lockx,locky,olddata)).getData();
+                    monsterwizard.setMonster(olddata, currentlevel, lockx, locky);
+                    MonsterData tempdata = monsterwizard.getData();
+                    if (tempdata != null) {
+                        if (tempdata.subsquare == 5 && sub != 5) {
+                            //changed a non sub5 mon into a sub5 mon
+                            for (int i = 0; i < 4; i++) {
+                                monhash.remove(currentlevel + "," + lockx + "," + locky + "," + i);
+                                mapdata[lockx][locky].hasmonin[i] = false;
+                            }
+                            sub = 5;
+                            mapdata[lockx][locky].hasmonin[4] = true;
+                        } else if (tempdata.subsquare != 5 && sub == 5) {
+                            //changed a sub5 mon into a non sub5
+                            monhash.remove(currentlevel + "," + lockx + "," + locky + "," + sub);
+                            sub = 0;
+                            mapdata[lockx][locky].hasmonin[4] = false;
+                            mapdata[lockx][locky].hasmonin[0] = true;
+                        } else tempdata.subsquare = sub;
+                        monhash.put(currentlevel + "," + lockx + "," + locky + "," + sub, tempdata);
+                        SQUARELOCKED = false;
+                        setStatusBar(mapdata[lockx][locky], lockx, locky);
+                        SQUARELOCKED = true;
+                        statusbar.setText(statusbar.getText() + "      (Locked)");
+                        mappanel.repaint();
+                    }
+                } else if (choice == 1) {
+                    MonsterData olddata = (MonsterData) monhash.remove(currentlevel + "," + lockx + "," + locky + "," + sub);
+                    if (sub != 5) mapdata[lockx][locky].hasmonin[sub] = false;
+                    else mapdata[lockx][locky].hasmonin[4] = false;
+                    if (!mapdata[lockx][locky].hasmonin[0] && !mapdata[lockx][locky].hasmonin[1] && !mapdata[lockx][locky].hasmonin[2] && !mapdata[lockx][locky].hasmonin[3] && !mapdata[lockx][locky].hasmonin[4])
+                        mapdata[lockx][locky].hasMons = false;
                     SQUARELOCKED = false;
                     setStatusBar(mapdata[lockx][locky], lockx, locky);
                     SQUARELOCKED = true;
                     statusbar.setText(statusbar.getText() + "      (Locked)");
                     mappanel.repaint();
-                }
-            } else if (choice == 1) {
-                MonsterData olddata = (MonsterData) monhash.remove(currentlevel + "," + lockx + "," + locky + "," + sub);
-                if (sub != 5) mapdata[lockx][locky].hasmonin[sub] = false;
-                else mapdata[lockx][locky].hasmonin[4] = false;
-                if (!mapdata[lockx][locky].hasmonin[0] && !mapdata[lockx][locky].hasmonin[1] && !mapdata[lockx][locky].hasmonin[2] && !mapdata[lockx][locky].hasmonin[3] && !mapdata[lockx][locky].hasmonin[4])
-                    mapdata[lockx][locky].hasMons = false;
-                SQUARELOCKED = false;
-                setStatusBar(mapdata[lockx][locky], lockx, locky);
-                SQUARELOCKED = true;
-                statusbar.setText(statusbar.getText() + "      (Locked)");
-                mappanel.repaint();
-            } else if (choice == 2 && sub != 5) {
-                String[] corners = {"NW", "NE", "SE", "SW"};
-                int newcorner = JOptionPane.showOptionDialog(frame, "Which corner?", "Change Corner", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, corners, corners[0]);
-                if (newcorner != sub) {
-                    MonsterData data = (MonsterData) monhash.remove(currentlevel + "," + lockx + "," + locky + "," + sub);
-                    data.subsquare = newcorner;
-                    if (mapdata[lockx][locky].hasmonin[newcorner]) {
-                        MonsterData olddata = (MonsterData) monhash.remove(currentlevel + "," + lockx + "," + locky + "," + newcorner);
-                        olddata.subsquare = sub;
-                        monhash.put(currentlevel + "," + lockx + "," + locky + "," + sub, olddata);
-                    } else {
-                        mapdata[lockx][locky].hasmonin[sub] = false;
-                        mapdata[lockx][locky].hasmonin[newcorner] = true;
+                } else if (choice == 2 && sub != 5) {
+                    String[] corners = {"NW", "NE", "SE", "SW"};
+                    int newcorner = JOptionPane.showOptionDialog(frame, "Which corner?", "Change Corner", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, corners, corners[0]);
+                    if (newcorner != sub) {
+                        MonsterData data = (MonsterData) monhash.remove(currentlevel + "," + lockx + "," + locky + "," + sub);
+                        data.subsquare = newcorner;
+                        if (mapdata[lockx][locky].hasmonin[newcorner]) {
+                            MonsterData olddata = (MonsterData) monhash.remove(currentlevel + "," + lockx + "," + locky + "," + newcorner);
+                            olddata.subsquare = sub;
+                            monhash.put(currentlevel + "," + lockx + "," + locky + "," + sub, olddata);
+                        } else {
+                            mapdata[lockx][locky].hasmonin[sub] = false;
+                            mapdata[lockx][locky].hasmonin[newcorner] = true;
+                        }
+                        monhash.put(currentlevel + "," + lockx + "," + locky + "," + newcorner, data);
+                        setStatusBar(mapdata[lockx][locky], lockx, locky);
+                        statusbar.setText(statusbar.getText() + "      (Locked)");
+                        mappanel.repaint();
                     }
-                    monhash.put(currentlevel + "," + lockx + "," + locky + "," + newcorner, data);
-                    setStatusBar(mapdata[lockx][locky], lockx, locky);
-                    statusbar.setText(statusbar.getText() + "      (Locked)");
-                    mappanel.repaint();
                 }
-            }
-        } else mapchangechar = (e.getActionCommand()).charAt(0);
+                break;
+            default:
+                mapchangechar = (event.getActionCommand()).charAt(0);
+                break;
+        }
     }
     
     
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent keyEvent) {
     }
     
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent keyEvent) {
     }
     
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent keyEvent) {
         //if (e.getKeyCode()==KeyEvent.VK_Z && e.isControlDown()) { menulisten.actionPerformed(new ActionEvent(undoitem,0,"Undo")); }
-        if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+        if (keyEvent.getKeyCode() == KeyEvent.VK_CONTROL) {
             char mapchar = mapdata[currentx][currenty].mapchar;
             switch (mapchar) {
                 case '0':
@@ -823,7 +844,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     mbutton[28].doClick();
                     break;
             }
-        } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        } else if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER) {
             SQUARELOCKED = !SQUARELOCKED;
             if (SQUARELOCKED) statusbar.setText(statusbar.getText() + "      (Locked)");
             else {
@@ -839,7 +860,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     statusbar.setText(statusbar.getText().substring(0, statusbar.getText().indexOf("(Locked)")).trim());
             }
             mappanel.repaint();
-        } else if (e.getKeyCode() == KeyEvent.VK_INSERT) {
+        } else if (keyEvent.getKeyCode() == KeyEvent.VK_INSERT) {
             if (partylevel == currentlevel) {
                 mapdata[partyx][partyy].hasParty = false;
                 mappanel.paintSquare(partyx, partyy, true);
@@ -860,7 +881,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
             mappanel.paintSquare(partyx, partyy, true);
             //mappanel.repaint();
             NEEDSAVE = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+        } else if (keyEvent.getKeyCode() == KeyEvent.VK_DELETE) {
             NEEDSAVE = true;
             if ((!SQUARELOCKED || (SQUARELOCKED && lockx == currentx && locky == currenty)) && (mapdata[currentx][currenty].hasItems || (mapdata[currentx][currenty].mapchar == '[' && (mapdata[currentx][currenty].numitemsin[0] > 0 || mapdata[currentx][currenty].numitemsin[1] > 0 || mapdata[currentx][currenty].numitemsin[2] > 0 || mapdata[currentx][currenty].numitemsin[3] > 0)))) {
                 if (mapdata[currentx][currenty].mapchar != '[')
@@ -937,17 +958,17 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                 }
                 //statusbar.setText(mapdata[currentx][currenty]+" at "+currentlevel+","+currentx+","+currenty);
             }
-        } else if (e.getKeyChar() == 'i' || e.getKeyChar() == 'I') {
+        } else if (keyEvent.getKeyChar() == 'i' || keyEvent.getKeyChar() == 'I') {
             mbutton[1].doClick();
-        } else if (e.getKeyChar() == 'm' || e.getKeyChar() == 'M') {
+        } else if (keyEvent.getKeyChar() == 'm' || keyEvent.getKeyChar() == 'M') {
             mbutton[0].doClick();
-        } else if (e.getKeyCode() == KeyEvent.VK_F5) {
+        } else if (keyEvent.getKeyCode() == KeyEvent.VK_F5) {
             //save map
             if (mapfile == null) {
                 saveAs();
                 repaint();
             } else save();
-        } else if (e.getKeyCode() == KeyEvent.VK_F7) {
+        } else if (keyEvent.getKeyCode() == KeyEvent.VK_F7) {
             //load a map
             if (NEEDSAVE) {
                 //pop up warning window
@@ -964,7 +985,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         //else if (e.getKeyChar()=='z' || e.getKeyChar()=='Z') {
         //        menulisten.actionPerformed(new ActionEvent(undoitem,0,"Undo"));
         //}
-        else if (e.getKeyChar() == 'f' || e.getKeyChar() == 'F')
+        else if (keyEvent.getKeyChar() == 'f' || keyEvent.getKeyChar() == 'F')
             System.out.println("" + Runtime.getRuntime().freeMemory());
     }
     
@@ -1086,16 +1107,16 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                 so.writeInt(defensepoints);
                 so.writeInt(itemchoose.size());
                 if (itemchoose.size() > 0) {
-                    for (int i = 0; i < itemchoose.size(); i++) {
-                        so.writeObject(itemchoose.get(i));
+                    for (Object object : itemchoose) {
+                        so.writeObject(object);
                     }
                     so.writeInt(itempoints);
                 }
                 so.writeInt(abilitychoose.size());
                 if (abilitychoose.size() > 0) {
                     so.writeInt(abilityauto);
-                    for (int i = 0; i < abilitychoose.size(); i++) {
-                        ((SpecialAbility) abilitychoose.get(i)).save(so);
+                    for (Object object : abilitychoose) {
+                        ((SpecialAbility) object).save(so);
                     }
                     so.writeInt(abilitypoints);
                 }
@@ -1150,8 +1171,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
             //need savegame test, also way to add/remove projs from map...
             so.writeInt(dmprojs.size());
             ProjectileData tempproj;
-            for (Iterator i = dmprojs.iterator(); i.hasNext(); ) {
-                tempproj = (ProjectileData) i.next();
+            for (Object dmproj : dmprojs) {
+                tempproj = (ProjectileData) dmproj;
                 so.writeBoolean(tempproj.isending);
                 //write true if proj is made of an item, else false
                 if (tempproj.it != null) {
@@ -1204,15 +1225,15 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
             //mapchanging = true;
             if (mapchanging) {
                 so.writeInt(mapstochange.size());
-                for (Iterator i = mapstochange.iterator(); i.hasNext(); ) {
-                    so.writeObject(i.next());
+                for (Object object : mapstochange) {
+                    so.writeObject(object);
                 }
             }
             if (cloudchanging) {
                 PoisonCloudData tempcloud;
                 so.writeInt(cloudstochange.size());
-                for (Iterator i = cloudstochange.iterator(); i.hasNext(); ) {
-                    tempcloud = (PoisonCloudData) i.next();
+                for (Object object : cloudstochange) {
+                    tempcloud = (PoisonCloudData) object;
                     tempcloud.save(so);
                 }
             }
@@ -1227,8 +1248,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
             
             //save ambient sound data
             so.writeInt(loopsounds.size());
-            for (int i = 0; i < loopsounds.size(); i++) {
-                LoopSound sound = (LoopSound) loopsounds.get(i);
+            for (Object loopsound : loopsounds) {
+                LoopSound sound = (LoopSound) loopsound;
                 so.writeUTF(sound.clipfile);
                 so.writeInt(sound.x);
                 so.writeInt(sound.y);
@@ -1576,7 +1597,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
     
     static public MapData loadMapData(ObjectInputStream si, int lvl, int x, int y, MapData oldmap) throws IOException, ClassNotFoundException {
         char mapchar;
-        MapData m = null;
+        MapData mapData = null;
         boolean canHoldItems, isPassable, canPassProjs, canPassMons, canPassImmaterial, drawItems, drawFurtherItems, hasParty, hasMons, hasItems;
         int numProjs;
         ArrayList mapItems = null;
@@ -1595,129 +1616,129 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         if (hasItems) mapItems = (ArrayList) si.readObject();
         switch (mapchar) {
             case '1': //wall
-                if (oldmap != null && oldmap.mapchar == '1') m = oldmap;
-                else m = new WallData();
+                if (oldmap != null && oldmap.mapchar == '1') mapData = oldmap;
+                else mapData = new WallData();
                 break;
             case '0': //floor
-                if (oldmap != null && oldmap.mapchar == '0') m = oldmap;
-                else m = new FloorData();
+                if (oldmap != null && oldmap.mapchar == '0') mapData = oldmap;
+                else mapData = new FloorData();
                 break;
             case 'd': //door
-                m = new DoorData((MapPoint) si.readObject(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt());
+                mapData = new DoorData((MapPoint) si.readObject(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt());
                 //((DoorData)m).changecount = si.readInt();
                 //((DoorData)m).isclosing = si.readBoolean();
                 //if ( ((DoorData)m).isBreakable && !((DoorData)m).isBroken ) ((DoorData)m).breakpoints = si.readInt();
-                m.load(si);
+                mapData.load(si);
                 break;
             case 's': //floorswitch
-                m = new FloorSwitchData();
-                m.load(si);//for everything
+                mapData = new FloorSwitchData();
+                mapData.load(si);//for everything
                 break;
             case '/': //wallswitch
-                m = new WallSwitchData(si.readInt());
-                m.load(si);//for everything but side
+                mapData = new WallSwitchData(si.readInt());
+                mapData.load(si);//for everything but side
                 break;
             case 't': //teleport
                 //m = new TeleportData(si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readInt(),si.readBoolean(),si.readBoolean(),si.readInt(),si.readInt(),si.readBoolean(),si.readBoolean(),si.readBoolean(),si.readBoolean(),si.readBoolean(),si.readInt(),si.readInt(),si.readBoolean(),si.readBoolean(),si.readInt(),si.readBoolean(),si.readInt(),si.readBoolean());
-                m = new TeleportData();
-                m.load(si);
+                mapData = new TeleportData();
+                mapData.load(si);
                 break;
             case ']': //onealcove
-                m = new OneAlcoveData(si.readInt());
-                m.load(si);//for floorswitch stuff
+                mapData = new OneAlcoveData(si.readInt());
+                mapData.load(si);//for floorswitch stuff
                 break;
             case '[': //alcove
-                m = new AlcoveData();
-                m.load(si);//for vectors and floorswitch stuff
+                mapData = new AlcoveData();
+                mapData.load(si);//for vectors and floorswitch stuff
                 break;
             case 'a': //altar
-                m = new AltarData(si.readInt());
-                m.load(si);//for floorswitch stuff
+                mapData = new AltarData(si.readInt());
+                mapData.load(si);//for floorswitch stuff
                 break;
             case '2': //fakewall
-                if (oldmap != null && oldmap.mapchar == '2') m = oldmap;
-                else m = new FakeWallData();
+                if (oldmap != null && oldmap.mapchar == '2') mapData = oldmap;
+                else mapData = new FakeWallData();
                 break;
             case 'f': //fountain
-                m = new FountainData(si.readInt());
-                m.load(si);
+                mapData = new FountainData(si.readInt());
+                mapData.load(si);
                 break;
             case 'p': //pit
-                m = new PitData(si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readBoolean(), si.readInt(), si.readBoolean(), si.readInt());
+                mapData = new PitData(si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readBoolean(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readBoolean(), si.readInt(), si.readBoolean(), si.readInt());
                 break;
             case '>': //stairs
                 int side = si.readInt();
                 boolean goesUp = si.readBoolean();
                 if (oldmap != null && oldmap.mapchar == '>' && ((StairsData) oldmap).goesUp == goesUp) {
-                    m = oldmap;
-                    ((StairsData) m).side = side;
-                } else m = new StairsData(side, goesUp);
+                    mapData = oldmap;
+                    ((StairsData) mapData).side = side;
+                } else mapData = new StairsData(side, goesUp);
                 //m = new StairsData(si.readInt(),si.readBoolean());
                 break;
             case 'l': //launcher
                 side = si.readInt();
-                m = new LauncherData(si.readInt(), si.readInt(), si.readInt(), side, si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean());
-                m.load(si);
+                mapData = new LauncherData(si.readInt(), si.readInt(), si.readInt(), side, si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean());
+                mapData.load(si);
                 break;
             case 'm': //mirror
-                m = new MirrorData(si.readInt());
-                m.load(si);//for hero and wasused
+                mapData = new MirrorData(si.readInt());
+                mapData.load(si);//for hero and wasused
                 break;
             case 'g': //generator
-                m = new GeneratorData(si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), new MonsterData(si));
+                mapData = new GeneratorData(si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), si.readInt(), si.readInt(), si.readInt(), si.readInt(), si.readBoolean(), new MonsterData(si));
                 //si.readBoolean();//delaying
-                ((GeneratorData) m).delaying = si.readBoolean();
+                ((GeneratorData) mapData).delaying = si.readBoolean();
                 break;
             case 'w': //writing
                 side = si.readInt();
                 String[] message = (String[]) si.readObject();
                 if (oldmap != null && oldmap.mapchar == 'w') {
-                    m = oldmap;
-                    ((WritingData) m).message = message;
-                } else m = new WritingData(side, message);
+                    mapData = oldmap;
+                    ((WritingData) mapData).message = message;
+                } else mapData = new WritingData(side, message);
                 //m = new WritingData(si.readInt(),(String[])si.readObject());
                 break;
             case 'W': //gamewinsquare (note: has same mapchar as writing2 -> but one of writings will go away)
-                m = new GameWinData(si.readUTF(), si.readUTF());
+                mapData = new GameWinData(si.readUTF(), si.readUTF());
                 break;
             case 'S': //multfloorswitch
-                m = new MultFloorSwitchData();
-                m.load(si);//for everything
+                mapData = new MultFloorSwitchData();
+                mapData.load(si);//for everything
                 break;
             case '\\': //multwallswitch
-                m = new MultWallSwitchData(si.readInt());
-                m.load(si);//for everything except side
+                mapData = new MultWallSwitchData(si.readInt());
+                mapData.load(si);//for everything except side
                 break;
             case '}': //sconce
-                m = new SconceData(si.readInt());
-                m.load(si);//for torch and switch stuff
+                mapData = new SconceData(si.readInt());
+                mapData.load(si);//for torch and switch stuff
                 break;
             case '!': //stormbringer
-                m = new StormbringerData(si.readBoolean());
+                mapData = new StormbringerData(si.readBoolean());
                 break;
             case 'G': //power gem
-                m = new PowerGemData(si.readBoolean());
+                mapData = new PowerGemData(si.readBoolean());
                 break;
             case 'D': //decoration
                 side = si.readInt();
                 int number = si.readInt();
                 if (oldmap != null && oldmap.mapchar == 'D') {
-                    m = oldmap;
-                    ((DecorationData) m).side = side;
-                    ((DecorationData) m).number = number;
-                } else m = new DecorationData(side, number);
+                    mapData = oldmap;
+                    ((DecorationData) mapData).side = side;
+                    ((DecorationData) mapData).number = number;
+                } else mapData = new DecorationData(side, number);
                 //m = new DecorationData(si.readInt(),si.readInt());
                 break;
             case 'F': //floor decoration
                 number = si.readInt();
                 if (oldmap != null && oldmap.mapchar == 'F') {
-                    m = oldmap;
-                    ((FDecorationData) m).number = number;
-                } else m = new FDecorationData(number);
+                    mapData = oldmap;
+                    ((FDecorationData) mapData).number = number;
+                } else mapData = new FDecorationData(number);
                 if (number == 3) {
-                    ((FDecorationData) m).level = si.readInt();
-                    ((FDecorationData) m).xcoord = si.readInt();
-                    ((FDecorationData) m).ycoord = si.readInt();
+                    ((FDecorationData) mapData).level = si.readInt();
+                    ((FDecorationData) mapData).xcoord = si.readInt();
+                    ((FDecorationData) mapData).ycoord = si.readInt();
                 }
                 //m = new FDecorationData(si.readInt());
                 break;
@@ -1725,108 +1746,109 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                 int type = si.readInt();
                 boolean mirror = si.readBoolean();
                 if (oldmap != null && oldmap.mapchar == 'P') {
-                    m = oldmap;
-                    ((PillarData) m).type = type;
-                    ((PillarData) m).mirror = mirror;
-                } else m = new PillarData(type, mirror);
-                if (type == 2) ((PillarData) m).custompic = si.readUTF();
+                    mapData = oldmap;
+                    ((PillarData) mapData).type = type;
+                    ((PillarData) mapData).mirror = mirror;
+                } else mapData = new PillarData(type, mirror);
+                if (type == 2) ((PillarData) mapData).custompic = si.readUTF();
                 //m = new PillarData(si.readInt(),si.readBoolean());
                 break;
             case 'i': //invisible wall
-                if (oldmap != null && oldmap.mapchar == 'i') m = oldmap;
-                else m = new InvisibleWallData();
+                if (oldmap != null && oldmap.mapchar == 'i') mapData = oldmap;
+                else mapData = new InvisibleWallData();
                 break;
             case 'E': //event square
-                m = new EventSquareData();
-                m.load(si);
+                mapData = new EventSquareData();
+                mapData.load(si);
                 break;
             case 'y': //fulya pit
-                m = new FulYaPitData((MapPoint) si.readObject(), si.readInt(), (MapPoint) si.readObject(), (MapPoint) si.readObject());
+                mapData = new FulYaPitData((MapPoint) si.readObject(), si.readInt(), (MapPoint) si.readObject(), (MapPoint) si.readObject());
                 break;
             //case 'c': //customsided
             //        //m = new CustomSided(si.readInt(),si.readUTF(),(int[])si.readObject(),(int[])si.readObject());
             //        break;
         }
-        m.canHoldItems = canHoldItems;
-        m.isPassable = isPassable;
-        m.canPassProjs = canPassProjs;
-        m.canPassMons = canPassMons;
-        m.canPassImmaterial = canPassImmaterial;
-        m.drawItems = drawItems;
-        m.drawFurtherItems = drawFurtherItems;
-        m.numProjs = numProjs;
-        m.hasParty = hasParty;
-        m.hasMons = hasMons;
-        m.hasItems = hasItems;
-        m.mapItems = mapItems;
-        m.numitemsin[0] = 0;
-        m.numitemsin[1] = 0;
-        m.numitemsin[2] = 0;
-        m.numitemsin[3] = 0;
-        m.hasmonin[0] = false;
-        m.hasmonin[1] = false;
-        m.hasmonin[2] = false;
-        m.hasmonin[3] = false;
+        mapData.canHoldItems = canHoldItems;
+        mapData.isPassable = isPassable;
+        mapData.canPassProjs = canPassProjs;
+        mapData.canPassMons = canPassMons;
+        mapData.canPassImmaterial = canPassImmaterial;
+        mapData.drawItems = drawItems;
+        mapData.drawFurtherItems = drawFurtherItems;
+        mapData.numProjs = numProjs;
+        mapData.hasParty = hasParty;
+        mapData.hasMons = hasMons;
+        mapData.hasItems = hasItems;
+        mapData.mapItems = mapItems;
+        mapData.numitemsin[0] = 0;
+        mapData.numitemsin[1] = 0;
+        mapData.numitemsin[2] = 0;
+        mapData.numitemsin[3] = 0;
+        mapData.hasmonin[0] = false;
+        mapData.hasmonin[1] = false;
+        mapData.hasmonin[2] = false;
+        mapData.hasmonin[3] = false;
         if (hasItems && lvl >= 0) {
             //System.out.println(mapchar+" at "+lvl+","+x+","+y);
             if (mapchar == ']' || mapchar == 'a' || mapchar == 'f') {
                 //set hasItems[] and numitemsin[] by (side+2)%4
-                int side = (((SidedWallData) m).side + 2) % 4;
-                m.numitemsin[side] = mapItems.size();
+                int side = (((SidedWallData) mapData).side + 2) % 4;
+                mapData.numitemsin[side] = mapItems.size();
             } else {
                 //set hasItems[] and numitemsin[] by subsquare
                 int ss;
                 Item tempitem;
-                for (Iterator i = mapItems.iterator(); i.hasNext(); ) {
-                    tempitem = (Item) i.next();
-                    m.numitemsin[tempitem.subsquare]++;
+                for (Object mapItem : mapItems) {
+                    tempitem = (Item) mapItem;
+                    mapData.numitemsin[tempitem.subsquare]++;
                 }
             }
         } else if (mapchar == '[') {
             //set hasItems[] and numitemsin[] by each side (northside,westside,...)
-            if (!((AlcoveData) m).northside.isEmpty()) {
-                m.numitemsin[0] = ((AlcoveData) m).northside.size();
+            if (!((AlcoveData) mapData).northside.isEmpty()) {
+                mapData.numitemsin[0] = ((AlcoveData) mapData).northside.size();
             }
-            if (!((AlcoveData) m).westside.isEmpty()) {
-                m.numitemsin[1] = ((AlcoveData) m).westside.size();
+            if (!((AlcoveData) mapData).westside.isEmpty()) {
+                mapData.numitemsin[1] = ((AlcoveData) mapData).westside.size();
             }
-            if (!((AlcoveData) m).southside.isEmpty()) {
-                m.numitemsin[2] = ((AlcoveData) m).southside.size();
+            if (!((AlcoveData) mapData).southside.isEmpty()) {
+                mapData.numitemsin[2] = ((AlcoveData) mapData).southside.size();
             }
-            if (!((AlcoveData) m).eastside.isEmpty()) {
-                m.numitemsin[3] = ((AlcoveData) m).eastside.size();
+            if (!((AlcoveData) mapData).eastside.isEmpty()) {
+                mapData.numitemsin[3] = ((AlcoveData) mapData).eastside.size();
             }
         }
         if (hasMons) {
             for (int sub = 0; sub < 6; ) {
                 if (monhash.get(lvl + "," + x + "," + y + "," + sub) != null) {
-                    if (sub < 4) m.hasmonin[sub] = true;
-                    else m.hasmonin[4] = true;
+                    if (sub < 4) mapData.hasmonin[sub] = true;
+                    else mapData.hasmonin[4] = true;
                 }
                 if (sub == 3) sub = 5;
                 else sub++;
             }
         }
-        if (!canPassMons && (!(m instanceof WallData) || m.mapchar == '2' || m.mapchar == '>')) {
-            m.nomons = true;
-        } else m.nomons = false;
-        if (!canPassImmaterial && m.mapchar != '!' && m.mapchar != 'G') m.noghosts = true;
-        else m.noghosts = false;
-        return m;
+        if (!canPassMons && (!(mapData instanceof WallData) || mapData.mapchar == '2' || mapData.mapchar == '>')) {
+            mapData.nomons = true;
+        } else mapData.nomons = false;
+        if (!canPassImmaterial && mapData.mapchar != '!' && mapData.mapchar != 'G') mapData.noghosts = true;
+        else mapData.noghosts = false;
+        return mapData;
     }
     
-    public void setStatusBar(MapData md, int x, int y) {
-        statusbar.setText(md + " at " + currentlevel + "," + x + "," + y);
-        if (md.nomons) statusbar.setText(statusbar.getText() + "  (No Mons)");
-        else if (md.noghosts) statusbar.setText(statusbar.getText() + "  (No Ghosts)");
-        if (md.mapchar == 't') {
-            statusbar.setText(statusbar.getText() + "       Targets " + ((TeleportData) md).targetlevel + "," + ((TeleportData) md).targetx + "," + ((TeleportData) md).targety);
-        } else if (md.mapchar == '/') {
-            statusbar.setText(statusbar.getText() + "       Targets " + ((WallSwitchData) md).targetlevel + "," + ((WallSwitchData) md).targetx + "," + ((WallSwitchData) md).targety);
-        } else if (md.mapchar == 's') {
-            statusbar.setText(statusbar.getText() + "       Targets " + ((FloorSwitchData) md).targetlevel + "," + ((FloorSwitchData) md).targetx + "," + ((FloorSwitchData) md).targety);
-        } else if (md.mapchar == '\\') {
-            MultWallSwitchData mwd = (MultWallSwitchData) md;
+    public void setStatusBar(MapData mapData, int x, int y) {
+        statusbar.setText(mapData + " at " + currentlevel + "," + x + "," + y);
+        if (mapData.nomons) statusbar.setText(statusbar.getText() + "  (No Mons)");
+        else if (mapData.noghosts) statusbar.setText(statusbar.getText() + "  (No Ghosts)");
+        
+        if (mapData.mapchar == 't') {
+            statusbar.setText(statusbar.getText() + "       Targets " + ((TeleportData) mapData).targetlevel + "," + ((TeleportData) mapData).targetx + "," + ((TeleportData) mapData).targety);
+        } else if (mapData.mapchar == '/') {
+            statusbar.setText(statusbar.getText() + "       Targets " + ((WallSwitchData) mapData).targetlevel + "," + ((WallSwitchData) mapData).targetx + "," + ((WallSwitchData) mapData).targety);
+        } else if (mapData.mapchar == 's') {
+            statusbar.setText(statusbar.getText() + "       Targets " + ((FloorSwitchData) mapData).targetlevel + "," + ((FloorSwitchData) mapData).targetx + "," + ((FloorSwitchData) mapData).targety);
+        } else if (mapData.mapchar == '\\') {
+            MultWallSwitchData mwd = (MultWallSwitchData) mapData;
             int[] target;
             int firstlevel = 0, firstx = 0, firsty = 0;
             boolean multtargs = false;
@@ -1846,8 +1868,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                 target = mwd.getTarget(0);
                 statusbar.setText(statusbar.getText() + "       Targets " + target[0] + "," + target[1] + "," + target[2]);
             }
-        } else if (md.mapchar == 'S') {
-            MultFloorSwitchData mwd = (MultFloorSwitchData) md;
+        } else if (mapData.mapchar == 'S') {
+            MultFloorSwitchData mwd = (MultFloorSwitchData) mapData;
             int[] target;
             int firstlevel = 0, firstx = 0, firsty = 0;
             boolean multtargs = false;
@@ -1867,9 +1889,9 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                 target = mwd.getTarget(0);
                 statusbar.setText(statusbar.getText() + "       Targets " + target[0] + "," + target[1] + "," + target[2]);
             }
-        } else if (md.mapchar == '}') {
+        } else if (mapData.mapchar == '}') {
             //if isswitch, outline the target if on screen
-            SconceData d = (SconceData) md;
+            SconceData d = (SconceData) mapData;
             if (d.isSwitch) {
                 int[] target;
                 int firstlevel = 0, firstx = 0, firsty = 0;
@@ -1891,8 +1913,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     statusbar.setText(statusbar.getText() + "       Targets " + target[0] + "," + target[1] + "," + target[2]);
                 }
             }
-        } else if (md instanceof OneAlcoveData) {
-            OneAlcoveData d = (OneAlcoveData) md;
+        } else if (mapData instanceof OneAlcoveData) {
+            OneAlcoveData d = (OneAlcoveData) mapData;
             if (d.isSwitch) {
                 int[] target;
                 int firstlevel = 0, firstx = 0, firsty = 0;
@@ -1914,8 +1936,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     statusbar.setText(statusbar.getText() + "       Targets " + target[0] + "," + target[1] + "," + target[2]);
                 }
             }
-        } else if (md.mapchar == '[') {
-            AlcoveData d = (AlcoveData) md;
+        } else if (mapData.mapchar == '[') {
+            AlcoveData d = (AlcoveData) mapData;
             if (d.isSwitch) {
                 int[] target;
                 int firstlevel = 0, firstx = 0, firsty = 0;
@@ -1937,8 +1959,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     statusbar.setText(statusbar.getText() + "       Targets " + target[0] + "," + target[1] + "," + target[2]);
                 }
             }
-        } else if (md.mapchar == 'f') {
-            FountainData d = (FountainData) md;
+        } else if (mapData.mapchar == 'f') {
+            FountainData d = (FountainData) mapData;
             if (d.fountainswitch != null) {
                 int[] target;
                 int firstlevel = 0, firstx = 0, firsty = 0;
@@ -1960,20 +1982,22 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     statusbar.setText(statusbar.getText() + "       Targets " + target[0] + "," + target[1] + "," + target[2]);
                 }
             }
-        } else if (md.mapchar == 'm') {
-            if (((MirrorData) md).target != null) {
-                statusbar.setText(statusbar.getText() + "       Targets " + ((MirrorData) md).target.level + "," + ((MirrorData) md).target.x + "," + ((MirrorData) md).target.y);
+        } else if (mapData.mapchar == 'm') {
+            if (((MirrorData) mapData).target != null) {
+                statusbar.setText(statusbar.getText() + "       Targets " + ((MirrorData) mapData).target.level + "," + ((MirrorData) mapData).target.x + "," + ((MirrorData) mapData).target.y);
             }
-        } else if (md.mapchar == 'y') {
-            FulYaPitData fypit = (FulYaPitData) md;
+        } else if (mapData.mapchar == 'y') {
+            FulYaPitData fypit = (FulYaPitData) mapData;
             statusbar.setText(statusbar.getText() + "       If Key Targets " + fypit.keytarget.level + "," + fypit.keytarget.x + "," + fypit.keytarget.y + "       If Not Key Targets " + fypit.nonkeytarget.level + "," + fypit.nonkeytarget.x + "," + fypit.nonkeytarget.y);
         }
+        
         if (SQUARELOCKED) statusbar.setText(statusbar.getText() + "      (Locked)");
         monitembox.removeAll();
-        if (md.hasMons || md.hasItems || md.mapchar == 'm' || md.mapchar == 'g' || md.mapchar == 'E' || (md instanceof AlcoveData && ((AlcoveData) md).holdingItems())) {
+        
+        if (mapData.hasMons || mapData.hasItems || mapData.mapchar == 'm' || mapData.mapchar == 'g' || mapData.mapchar == 'E' || (mapData instanceof AlcoveData && ((AlcoveData) mapData).holdingItems())) {
             monitembox.add(Box.createVerticalGlue());
-            if (md.mapchar == 'm') {
-                HeroData hero = ((MirrorData) md).hero;
+            if (mapData.mapchar == 'm') {
+                HeroData hero = ((MirrorData) mapData).hero;
                 if (hero != null) {
                     monitembox.add(new JLabel(new ImageIcon(hero.pic)));
                     if (hero.weapon != fistfoot) monitembox.add(new JLabel(new ImageIcon(hero.weapon.pic)));
@@ -1992,11 +2016,11 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                         if (hero.pack[i] != null) monitembox.add(new JLabel(new ImageIcon(hero.pack[i].pic)));
                     }
                 }
-            } else if (md.mapchar == 'g') {
-                MonsterData monster = ((GeneratorData) md).monster;
+            } else if (mapData.mapchar == 'g') {
+                MonsterData monster = ((GeneratorData) mapData).monster;
                 JLabel genmonlab = new JLabel(monster.pic);
                 genmonlab.setForeground(Color.black);
-                int numtogen = ((GeneratorData) md).numtogen;
+                int numtogen = ((GeneratorData) mapData).numtogen;
                 if (numtogen == 5) genmonlab.setText("R");
                 else genmonlab.setText("" + numtogen);
                 monitembox.add(genmonlab);
@@ -2019,9 +2043,9 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                                 }
                                 */
                 addMonsterItems(monster);
-            } else if (md.mapchar == 'E') {
+            } else if (mapData.mapchar == 'E') {
                 //event squares
-                EventSquareData ed = (EventSquareData) md;
+                EventSquareData ed = (EventSquareData) mapData;
                 Action a;
                 JLabel chestitemlab;
                 for (int i = 0; i < ed.choices.length; i++) {
@@ -2044,7 +2068,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     }
                 }
             }
-            if (md.hasMons) {
+            if (mapData.hasMons) {
                 MonsterData data;
                 JButton monbutton;
                 //JLabel monitemlab;
@@ -2086,13 +2110,13 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     else sub++;
                 }
             }
-            if (md instanceof AlcoveData && ((AlcoveData) md).holdingItems()) {
+            if (mapData instanceof AlcoveData && ((AlcoveData) mapData).holdingItems()) {
                 JButton itembutton;
                 JLabel chestitemlab;
                 Dimension itemdim = new Dimension(45, 45);
                 Item tempitem;
                 int index = 0;
-                for (Iterator iter = ((AlcoveData) md).northside.iterator(); iter.hasNext(); index++) {
+                for (Iterator iter = ((AlcoveData) mapData).northside.iterator(); iter.hasNext(); index++) {
                     tempitem = (Item) iter.next();
                     itembutton = new JButton("N", new ImageIcon(tempitem.pic));
                     itembutton.setFocusable(false);
@@ -2113,7 +2137,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     }
                 }
                 index = 0;
-                for (Iterator iter = ((AlcoveData) md).southside.iterator(); iter.hasNext(); index++) {
+                for (Iterator iter = ((AlcoveData) mapData).southside.iterator(); iter.hasNext(); index++) {
                     tempitem = (Item) iter.next();
                     itembutton = new JButton("S", new ImageIcon(tempitem.pic));
                     itembutton.setFocusable(false);
@@ -2134,7 +2158,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     }
                 }
                 index = 0;
-                for (Iterator iter = ((AlcoveData) md).eastside.iterator(); iter.hasNext(); index++) {
+                for (Iterator iter = ((AlcoveData) mapData).eastside.iterator(); iter.hasNext(); index++) {
                     tempitem = (Item) iter.next();
                     itembutton = new JButton("E", new ImageIcon(tempitem.pic));
                     itembutton.setFocusable(false);
@@ -2155,7 +2179,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     }
                 }
                 index = 0;
-                for (Iterator iter = ((AlcoveData) md).westside.iterator(); iter.hasNext(); index++) {
+                for (Iterator iter = ((AlcoveData) mapData).westside.iterator(); iter.hasNext(); index++) {
                     tempitem = (Item) iter.next();
                     itembutton = new JButton("W", new ImageIcon(tempitem.pic));
                     itembutton.setFocusable(false);
@@ -2175,16 +2199,16 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                         }
                     }
                 }
-            } else if (md.hasItems) {
+            } else if (mapData.hasItems) {
                 boolean alcove = false;
-                if (md instanceof OneAlcoveData || md.mapchar == 'f') alcove = true;
+                if (mapData instanceof OneAlcoveData || mapData.mapchar == 'f') alcove = true;
                 JButton itembutton;
                 JLabel chestitemlab;
                 Dimension itemdim = new Dimension(45, 45);
                 Item tempitem;
-                int numitems = md.mapItems.size();
+                int numitems = mapData.mapItems.size();
                 for (int index = 0; index < numitems; index++) {
-                    tempitem = (Item) md.mapItems.get(index);
+                    tempitem = (Item) mapData.mapItems.get(index);
                     itembutton = new JButton(new ImageIcon(tempitem.pic));
                     itembutton.setFocusable(false);
                     if (!alcove) {
@@ -2226,8 +2250,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
         if (monster.equipped != null) monlist = monster.equipped;
         else monlist = monster.carrying;
         while (!done) {
-            for (int i = 0; i < monlist.size(); i++) {
-                Item tempitem = ((Item) monlist.get(i));
+            for (Object object : monlist) {
+                Item tempitem = ((Item) object);
                 monitemlab = new JLabel(new ImageIcon(tempitem.pic));
                 monitembox.add(monitemlab);
                 if (tempitem.number == 5) {
@@ -2253,8 +2277,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
     
     public boolean accept(File dir, String name) {
         name = name.toLowerCase();
-        if (name.endsWith(".dat") || name.endsWith(".data") || name.endsWith(".sav")) return true;
-        return false;
+        return name.endsWith(".dat") || name.endsWith(".data") || name.endsWith(".sav");
     }
     
     class MapClick extends MouseAdapter implements MouseMotionListener {
@@ -2512,8 +2535,8 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
             if (haditems) {
                 oldmapitems = clicked.mapItems;
                 if (clicked.mapchar == ']' || clicked.mapchar == 'a' || clicked.mapchar == 'f') {
-                    for (int i = 0; i < oldmapitems.size(); i++) {
-                        ((Item) oldmapitems.get(i)).subsquare = (((SidedWallData) clicked).side + 2) % 4;
+                    for (Object oldmapitem : oldmapitems) {
+                        ((Item) oldmapitem).subsquare = (((SidedWallData) clicked).side + 2) % 4;
                     }
                 }
                 oldnumitemsin[0] = clicked.numitemsin[0];
@@ -2920,16 +2943,16 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
             } else if (haditems && clicked.mapchar != '1' && clicked.mapchar != 'm' && clicked.mapchar != 'w' && clicked.mapchar != 'l' && clicked.mapchar != '}' && clicked.mapchar != 'D' && clicked.mapchar != '/' && clicked.mapchar != '\\' && clicked.mapchar != 'y' && clicked.mapchar != 'P') {
                 Item tempitem;
                 if (clicked.mapchar == '[') {
-                    for (int i = 0; i < oldmapitems.size(); i++) {
-                        tempitem = (Item) oldmapitems.get(i);
+                    for (Object oldmapitem : oldmapitems) {
+                        tempitem = (Item) oldmapitem;
                         ((AlcoveData) clicked).addItem(tempitem, tempitem.subsquare);
                     }
                 } else if (clicked.mapchar == ']' || clicked.mapchar == 'a' || clicked.mapchar == 'f') {
                     clicked.hasItems = true;
                     //clicked.mapItems = oldmapitems;
                     clicked.mapItems = new ArrayList(oldmapitems.size());
-                    for (int i = 0; i < oldmapitems.size(); i++) {
-                        tempitem = (Item) oldmapitems.get(i);
+                    for (Object oldmapitem : oldmapitems) {
+                        tempitem = (Item) oldmapitem;
                         tempitem.subsquare = (((SidedWallData) clicked).side + 2) % 4;
                         clicked.mapItems.add(tempitem);
                         clicked.numitemsin[tempitem.subsquare]++;
@@ -2938,7 +2961,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     clicked.hasItems = true;
                     //clicked.mapItems = oldmapitems;
                     clicked.mapItems = new ArrayList(oldmapitems.size());
-                    for (int i = 0; i < oldmapitems.size(); i++) clicked.mapItems.add(oldmapitems.get(i));
+                    for (Object oldmapitem : oldmapitems) clicked.mapItems.add(oldmapitem);
                     clicked.numitemsin[0] = oldnumitemsin[0];
                     clicked.numitemsin[1] = oldnumitemsin[1];
                     clicked.numitemsin[2] = oldnumitemsin[2];
@@ -3172,7 +3195,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     }
                     //save custom items
                     if (NEEDSAVEITEMS && ItemWizard.customitems.size() > 0) {
-                        FileOutputStream out = new FileOutputStream(new File("custom_items.dat"));
+                        FileOutputStream out = new FileOutputStream("custom_items.dat");
                         ObjectOutputStream so = new ObjectOutputStream(out);
                         so.writeInt(ItemWizard.customitems.size());
                         for (int i = 0; i < ItemWizard.customitems.size(); i++) {
@@ -3185,7 +3208,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                     //save custom mons
                     if (NEEDSAVEMONS && MonsterWizard.custommons.size() > 0) {
                         MonsterData.NOITEMS = true;
-                        FileOutputStream out = new FileOutputStream(new File("custom_mons.dat"));
+                        FileOutputStream out = new FileOutputStream("custom_mons.dat");
                         ObjectOutputStream so = new ObjectOutputStream(out);
                         so.writeInt(MonsterWizard.custommons.size());
                         for (int i = 0; i < MonsterWizard.custommons.size(); i++) {
@@ -3341,7 +3364,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                             it.number += numadjust;
                             if (ItemWizard.customitems.contains(it)) {
                                 int duplicate = 0;
-                                String basename = new String(it.name);
+                                String basename = it.name;
                                 do {
                                     duplicate++;
                                     it.name = basename + duplicate;
@@ -3379,7 +3402,7 @@ class DMEditor extends JFrame implements ActionListener, KeyListener, FilenameFi
                             mon.number += numadjust;
                             if (MonsterWizard.custommons.contains(mon)) {
                                 int duplicate = 0;
-                                String basename = new String(mon.name);
+                                String basename = mon.name;
                                 do {
                                     duplicate++;
                                     mon.name = basename + duplicate;
