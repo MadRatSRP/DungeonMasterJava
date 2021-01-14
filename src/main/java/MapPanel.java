@@ -7,122 +7,127 @@ import java.util.ArrayList;
 import static util.Utils.getImageIconFromFile;
 
 class MapPanel extends JPanel {
-    public static final ImageIcon WallIcon = getImageIconFromFile("Icons" + File.separator + "wall.gif");
-    public static final ImageIcon DoorIcon = getImageIconFromFile("Icons" + File.separator + "door.gif");
-    public static final ImageIcon FakeWallIcon = getImageIconFromFile("Icons" + File.separator + "fakewall.gif");
-    public static final ImageIcon AltarIcon = getImageIconFromFile("Icons" + File.separator + "altar.gif");
-    public static final ImageIcon AlcoveIcon = getImageIconFromFile("Icons" + File.separator + "alcove.gif");
-    public static final ImageIcon FountainIcon = getImageIconFromFile("Icons" + File.separator + "fountain.gif");
-    public static final ImageIcon StairsDownIcon = getImageIconFromFile("Icons" + File.separator + "stairsdown.gif");
-    public static final ImageIcon StairsUpIcon = getImageIconFromFile("Icons" + File.separator + "stairsup.gif");
-    public static final ImageIcon TeleportIcon = getImageIconFromFile("Icons" + File.separator + "teleport.gif");
-    public static final ImageIcon PitIcon = getImageIconFromFile("Icons" + File.separator + "pit.gif");
-    public static final ImageIcon MirrorIcon = getImageIconFromFile("Icons" + File.separator + "mirror.gif");
-    public static final ImageIcon WritingIcon = getImageIconFromFile("Icons" + File.separator + "writing.gif");
-    public static final ImageIcon LauncherIcon = getImageIconFromFile("Icons" + File.separator + "launcher.gif");
-    public static final ImageIcon GeneratorIcon = getImageIconFromFile("Icons" + File.separator + "generator.gif");
-    public static final ImageIcon WallSwitchIcon = getImageIconFromFile("Icons" + File.separator + "wallswitch.gif");
-    public static final ImageIcon MultWallSwitchIcon = getImageIconFromFile("Icons" + File.separator + "multwallswitch.gif");
-    public static final ImageIcon FloorSwitchIcon = getImageIconFromFile("Icons" + File.separator + "floorswitch.gif");
-    public static final ImageIcon MultFloorSwitchIcon = getImageIconFromFile("Icons" + File.separator + "multfloorswitch.gif");
-    public static final ImageIcon SconceIcon = getImageIconFromFile("Icons" + File.separator + "sconce.gif");
-    public static final ImageIcon DecorationIcon = getImageIconFromFile("Icons" + File.separator + "decoration.gif");
-    public static final ImageIcon FDecorationIcon = getImageIconFromFile("Icons" + File.separator + "fdecoration.gif");
-    public static final ImageIcon PillarIcon = getImageIconFromFile("Icons" + File.separator + "pillar.gif");
-    public static final ImageIcon InvisibleWallIcon = getImageIconFromFile("Icons" + File.separator + "invisiblewall.gif");
-    public static final ImageIcon EventIcon = getImageIconFromFile("Icons" + File.separator + "event.gif");
-    public static final ImageIcon GameWinIcon = getImageIconFromFile("Icons" + File.separator + "gamewin.gif");
-    public static final ImageIcon StormIcon = getImageIconFromFile("Icons" + File.separator + "stormbringer.gif");
-    public static final ImageIcon GemIcon = getImageIconFromFile("Icons" + File.separator + "powergem.gif");
-    public static final ImageIcon FulYaIcon = getImageIconFromFile("Icons" + File.separator + "fulya.gif");
+    public static final String pathToImageIcons = "Icons" + File.separator;
     
-    public static final ImageIcon WallIconS = getImageIconFromFile("Icons" + File.separator + "wall-s.gif");
-    public static final ImageIcon DoorIconS = getImageIconFromFile("Icons" + File.separator + "door-s.gif");
-    public static final ImageIcon FakeWallIconS = getImageIconFromFile("Icons" + File.separator + "fakewall-s.gif");
-    public static final ImageIcon AltarIconS = getImageIconFromFile("Icons" + File.separator + "altar-s.gif");
-    public static final ImageIcon AlcoveIconS = getImageIconFromFile("Icons" + File.separator + "alcove-s.gif");
-    public static final ImageIcon FountainIconS = getImageIconFromFile("Icons" + File.separator + "fountain-s.gif");
-    public static final ImageIcon StairsDownIconS = getImageIconFromFile("Icons" + File.separator + "stairsdown-s.gif");
-    public static final ImageIcon StairsUpIconS = getImageIconFromFile("Icons" + File.separator + "stairsup-s.gif");
-    public static final ImageIcon TeleportIconS = getImageIconFromFile("Icons" + File.separator + "teleport-s.gif");
-    public static final ImageIcon PitIconS = getImageIconFromFile("Icons" + File.separator + "pit-s.gif");
-    public static final ImageIcon MirrorIconS = getImageIconFromFile("Icons" + File.separator + "mirror-s.gif");
-    public static final ImageIcon WritingIconS = getImageIconFromFile("Icons" + File.separator + "writing-s.gif");
-    public static final ImageIcon LauncherIconS = getImageIconFromFile("Icons" + File.separator + "launcher-s.gif");
-    public static final ImageIcon GeneratorIconS = getImageIconFromFile("Icons" + File.separator + "generator-s.gif");
-    public static final ImageIcon WallSwitchIconS = getImageIconFromFile("Icons" + File.separator + "wallswitch-s.gif");
-    public static final ImageIcon MultWallSwitchIconS = getImageIconFromFile("Icons" + File.separator + "multwallswitch-s.gif");
-    public static final ImageIcon FloorSwitchIconS = getImageIconFromFile("Icons" + File.separator + "floorswitch-s.gif");
-    public static final ImageIcon MultFloorSwitchIconS = getImageIconFromFile("Icons" + File.separator + "multfloorswitch-s.gif");
-    public static final ImageIcon SconceIconS = getImageIconFromFile("Icons" + File.separator + "sconce-s.gif");
-    public static final ImageIcon DecorationIconS = getImageIconFromFile("Icons" + File.separator + "decoration-s.gif");
-    public static final ImageIcon FDecorationIconS = getImageIconFromFile("Icons" + File.separator + "fdecoration-s.gif");
-    public static final ImageIcon PillarIconS = getImageIconFromFile("Icons" + File.separator + "pillar-s.gif");
-    public static final ImageIcon InvisibleWallIconS = getImageIconFromFile("Icons" + File.separator + "invisiblewall-s.gif");
-    public static final ImageIcon EventIconS = getImageIconFromFile("Icons" + File.separator + "event-s.gif");
-    public static final ImageIcon GameWinIconS = getImageIconFromFile("Icons" + File.separator + "gamewin-s.gif");
-    public static final ImageIcon StormIconS = getImageIconFromFile("Icons" + File.separator + "stormbringer-s.gif");
-    public static final ImageIcon GemIconS = getImageIconFromFile("Icons" + File.separator + "powergem-s.gif");
-    public static final ImageIcon FulYaIconS = getImageIconFromFile("Icons" + File.separator + "fulya-s.gif");
+    public static final ImageIcon WallIcon = getImageIconFromFile(pathToImageIcons + "wall.gif");
+    public static final ImageIcon DoorIcon = getImageIconFromFile(pathToImageIcons + "door.gif");
+    public static final ImageIcon FakeWallIcon = getImageIconFromFile(pathToImageIcons + "fakewall.gif");
+    public static final ImageIcon AltarIcon = getImageIconFromFile(pathToImageIcons + "altar.gif");
+    public static final ImageIcon AlcoveIcon = getImageIconFromFile(pathToImageIcons + "alcove.gif");
+    public static final ImageIcon FountainIcon = getImageIconFromFile(pathToImageIcons + "fountain.gif");
+    public static final ImageIcon StairsDownIcon = getImageIconFromFile(pathToImageIcons + "stairsdown.gif");
+    public static final ImageIcon StairsUpIcon = getImageIconFromFile(pathToImageIcons + "stairsup.gif");
+    public static final ImageIcon TeleportIcon = getImageIconFromFile(pathToImageIcons + "teleport.gif");
+    public static final ImageIcon PitIcon = getImageIconFromFile(pathToImageIcons + "pit.gif");
+    public static final ImageIcon MirrorIcon = getImageIconFromFile(pathToImageIcons + "mirror.gif");
+    public static final ImageIcon WritingIcon = getImageIconFromFile(pathToImageIcons + "writing.gif");
+    public static final ImageIcon LauncherIcon = getImageIconFromFile(pathToImageIcons + "launcher.gif");
+    public static final ImageIcon GeneratorIcon = getImageIconFromFile(pathToImageIcons + "generator.gif");
+    public static final ImageIcon WallSwitchIcon = getImageIconFromFile(pathToImageIcons + "wallswitch.gif");
+    public static final ImageIcon MultWallSwitchIcon = getImageIconFromFile(pathToImageIcons + "multwallswitch.gif");
+    public static final ImageIcon FloorSwitchIcon = getImageIconFromFile(pathToImageIcons + "floorswitch.gif");
+    public static final ImageIcon MultFloorSwitchIcon = getImageIconFromFile(pathToImageIcons + "multfloorswitch.gif");
+    public static final ImageIcon SconceIcon = getImageIconFromFile(pathToImageIcons + "sconce.gif");
+    public static final ImageIcon DecorationIcon = getImageIconFromFile(pathToImageIcons + "decoration.gif");
+    public static final ImageIcon FDecorationIcon = getImageIconFromFile(pathToImageIcons + "fdecoration.gif");
+    public static final ImageIcon PillarIcon = getImageIconFromFile(pathToImageIcons + "pillar.gif");
+    public static final ImageIcon InvisibleWallIcon = getImageIconFromFile(pathToImageIcons + "invisiblewall.gif");
+    public static final ImageIcon EventIcon = getImageIconFromFile(pathToImageIcons + "event.gif");
+    public static final ImageIcon GameWinIcon = getImageIconFromFile(pathToImageIcons + "gamewin.gif");
+    public static final ImageIcon StormIcon = getImageIconFromFile(pathToImageIcons + "stormbringer.gif");
+    public static final ImageIcon GemIcon = getImageIconFromFile(pathToImageIcons + "powergem.gif");
+    public static final ImageIcon FulYaIcon = getImageIconFromFile(pathToImageIcons + "fulya.gif");
     
-    private DMEditor dmed;
+    public static final ImageIcon WallIconS = getImageIconFromFile(pathToImageIcons + "wall-s.gif");
+    public static final ImageIcon DoorIconS = getImageIconFromFile(pathToImageIcons + "door-s.gif");
+    public static final ImageIcon FakeWallIconS = getImageIconFromFile(pathToImageIcons + "fakewall-s.gif");
+    public static final ImageIcon AltarIconS = getImageIconFromFile(pathToImageIcons + "altar-s.gif");
+    public static final ImageIcon AlcoveIconS = getImageIconFromFile(pathToImageIcons + "alcove-s.gif");
+    public static final ImageIcon FountainIconS = getImageIconFromFile(pathToImageIcons + "fountain-s.gif");
+    public static final ImageIcon StairsDownIconS = getImageIconFromFile(pathToImageIcons + "stairsdown-s.gif");
+    public static final ImageIcon StairsUpIconS = getImageIconFromFile(pathToImageIcons + "stairsup-s.gif");
+    public static final ImageIcon TeleportIconS = getImageIconFromFile(pathToImageIcons + "teleport-s.gif");
+    public static final ImageIcon PitIconS = getImageIconFromFile(pathToImageIcons + "pit-s.gif");
+    public static final ImageIcon MirrorIconS = getImageIconFromFile(pathToImageIcons + "mirror-s.gif");
+    public static final ImageIcon WritingIconS = getImageIconFromFile(pathToImageIcons + "writing-s.gif");
+    public static final ImageIcon LauncherIconS = getImageIconFromFile(pathToImageIcons + "launcher-s.gif");
+    public static final ImageIcon GeneratorIconS = getImageIconFromFile(pathToImageIcons + "generator-s.gif");
+    public static final ImageIcon WallSwitchIconS = getImageIconFromFile(pathToImageIcons + "wallswitch-s.gif");
+    public static final ImageIcon MultWallSwitchIconS = getImageIconFromFile(pathToImageIcons + "multwallswitch-s.gif");
+    public static final ImageIcon FloorSwitchIconS = getImageIconFromFile(pathToImageIcons + "floorswitch-s.gif");
+    public static final ImageIcon MultFloorSwitchIconS = getImageIconFromFile(pathToImageIcons + "multfloorswitch-s.gif");
+    public static final ImageIcon SconceIconS = getImageIconFromFile(pathToImageIcons + "sconce-s.gif");
+    public static final ImageIcon DecorationIconS = getImageIconFromFile(pathToImageIcons + "decoration-s.gif");
+    public static final ImageIcon FDecorationIconS = getImageIconFromFile(pathToImageIcons + "fdecoration-s.gif");
+    public static final ImageIcon PillarIconS = getImageIconFromFile(pathToImageIcons + "pillar-s.gif");
+    public static final ImageIcon InvisibleWallIconS = getImageIconFromFile(pathToImageIcons + "invisiblewall-s.gif");
+    public static final ImageIcon EventIconS = getImageIconFromFile(pathToImageIcons + "event-s.gif");
+    public static final ImageIcon GameWinIconS = getImageIconFromFile(pathToImageIcons + "gamewin-s.gif");
+    public static final ImageIcon StormIconS = getImageIconFromFile(pathToImageIcons + "stormbringer-s.gif");
+    public static final ImageIcon GemIconS = getImageIconFromFile(pathToImageIcons + "powergem-s.gif");
+    public static final ImageIcon FulYaIconS = getImageIconFromFile(pathToImageIcons + "fulya-s.gif");
+    
+    private final DMEditor dmEditor;
     private ArrayList targets;
-    private boolean needupdate = true;
-    private Dimension bigdim, smalldim;
-    private Font bigfont, smallfont;
-    private Stroke normalstroke, arrowstroke;
-    private Color floorcolor;
-    private Graphics2D g;//,offg;
+    private boolean isUpdatedNeeded = true;
+    private Dimension bigDimension, smallDimension;
+    private final Font bigFont;
+    private final Font smallFont;
+    private Stroke normalStroke;
+    private final Stroke arrowStroke;
+    private final Color floorColor;
+    private Graphics2D graphics2D;//,offg;
     private BufferedImage pic;
     //private Image offimage;
     
-    public MapPanel(DMEditor dmed) {
+    public MapPanel(DMEditor dmEditor) {
         super(false);
-        this.dmed = dmed;
+        this.dmEditor = dmEditor;
+        
         targets = new ArrayList(1);
-        bigdim = new Dimension(dmed.MAPWIDTH * 33, dmed.MAPHEIGHT * 33);
-        smalldim = new Dimension(dmed.MAPWIDTH * 17, dmed.MAPHEIGHT * 17);
-        arrowstroke = new BasicStroke(2.0f);
-        floorcolor = new Color(40, 30, 30);
-        setBackground(floorcolor);
-        setPreferredSize(bigdim);
-        setMaximumSize(bigdim);
-        bigfont = dmed.dungfont.deriveFont(8.0f);
-        smallfont = dmed.dungfont.deriveFont(6.0f);
+        bigDimension = new Dimension(DMEditor.MAPWIDTH * 33, DMEditor.MAPHEIGHT * 33);
+        smallDimension = new Dimension(DMEditor.MAPWIDTH * 17, DMEditor.MAPHEIGHT * 17);
+        arrowStroke = new BasicStroke(2.0f);
+        floorColor = new Color(40, 30, 30);
+        setBackground(floorColor);
+        setPreferredSize(bigDimension);
+        setMaximumSize(bigDimension);
+        bigFont = DMEditor.dungfont.deriveFont(8.0f);
+        smallFont = DMEditor.dungfont.deriveFont(6.0f);
         pic = new BufferedImage(50 * 33, 50 * 33, BufferedImage.TYPE_INT_BGR);
-        g = pic.createGraphics();
-        normalstroke = g.getStroke();
+        graphics2D = pic.createGraphics();
+        normalStroke = graphics2D.getStroke();
     }
     
     public void setNewSize() {
-        if (dmed.MAPWIDTH != (int) bigdim.getWidth() / 33 || dmed.MAPHEIGHT != (int) bigdim.getHeight() / 33) {
-            bigdim = new Dimension(dmed.MAPWIDTH * 33, dmed.MAPHEIGHT * 33);
-            smalldim = new Dimension(dmed.MAPWIDTH * 17, dmed.MAPHEIGHT * 17);
-            if (dmed.MAPWIDTH > pic.getWidth(null) / 33 || dmed.MAPHEIGHT > pic.getHeight(null) / 33) {
+        if (DMEditor.MAPWIDTH != (int) bigDimension.getWidth() / 33 || DMEditor.MAPHEIGHT != (int) bigDimension.getHeight() / 33) {
+            bigDimension = new Dimension(DMEditor.MAPWIDTH * 33, DMEditor.MAPHEIGHT * 33);
+            smallDimension = new Dimension(DMEditor.MAPWIDTH * 17, DMEditor.MAPHEIGHT * 17);
+            if (DMEditor.MAPWIDTH > pic.getWidth(null) / 33 || DMEditor.MAPHEIGHT > pic.getHeight(null) / 33) {
                 pic.flush();
-                g.dispose();
+                graphics2D.dispose();
                 pic = null;
                 System.gc();
-                pic = new BufferedImage(dmed.MAPWIDTH * 33, dmed.MAPHEIGHT * 33, BufferedImage.TYPE_INT_BGR);
-                g = pic.createGraphics();
-                normalstroke = g.getStroke();
+                pic = new BufferedImage(DMEditor.MAPWIDTH * 33, DMEditor.MAPHEIGHT * 33, BufferedImage.TYPE_INT_BGR);
+                graphics2D = pic.createGraphics();
+                normalStroke = graphics2D.getStroke();
             }
             setZoom();
-            g.setClip(0, 0, dmed.MAPWIDTH * 33, dmed.MAPHEIGHT * 33);
+            graphics2D.setClip(0, 0, DMEditor.MAPWIDTH * 33, DMEditor.MAPHEIGHT * 33);
         }
     }
     
     public void setZoom() {
-        if (!dmed.ZOOMING) {
-            setPreferredSize(bigdim);
-            setMaximumSize(bigdim);
-            g.setFont(bigfont);
+        if (!dmEditor.ZOOMING) {
+            setPreferredSize(bigDimension);
+            setMaximumSize(bigDimension);
+            graphics2D.setFont(bigFont);
         } else {
-            g.setColor(floorcolor);
-            g.fillRect(0, 0, dmed.MAPWIDTH * 33, dmed.MAPHEIGHT * 33);
-            setPreferredSize(smalldim);
-            setMaximumSize(smalldim);
-            g.setFont(smallfont);
+            graphics2D.setColor(floorColor);
+            graphics2D.fillRect(0, 0, DMEditor.MAPWIDTH * 33, DMEditor.MAPHEIGHT * 33);
+            setPreferredSize(smallDimension);
+            setMaximumSize(smallDimension);
+            graphics2D.setFont(smallFont);
         }
     }
     
@@ -131,144 +136,148 @@ class MapPanel extends JPanel {
     }
     
     public void repaint() {
-        needupdate = true;
+        isUpdatedNeeded = true;
         super.repaint();
     }
     
     public void paintSquare(int x, int y, boolean drawpic) {
-        if (!dmed.ZOOMING) {
-            g.setColor(floorcolor);
-            g.fillRect(x * 33, y * 33, 32, 32);
-            Image mappic = getPic(dmed.mapdata[x][y]);
+        if (!dmEditor.ZOOMING) {
+            graphics2D.setColor(floorColor);
+            graphics2D.fillRect(x * 33, y * 33, 32, 32);
+            Image mappic = getPic(dmEditor.mapdata[x][y]);
             int xpos = x * 33, ypos = y * 33;
-            if (mappic != null) g.drawImage(mappic, xpos, ypos, this);
-                        /*
-                           if (mappic!=null) {
-                                java.awt.geom.AffineTransform t = null;
-                                int side = 0;
-                                if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
-                                else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
-                                if (side!=0) {
-                                        t = g.getTransform();
-                                        g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+16,ypos+16));
-                                }
-                                g.drawImage(mappic,xpos,ypos,this);
-                                if (t!=null) g.setTransform(t);
-                           }
-                        */
+            if (mappic != null) graphics2D.drawImage(mappic, xpos, ypos, this);
+            /*
+               if (mappic!=null) {
+                    java.awt.geom.AffineTransform t = null;
+                    int side = 0;
+                    if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
+                    else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
+                    if (side!=0) {
+                            t = g.getTransform();
+                            g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+16,ypos+16));
+                    }
+                    g.drawImage(mappic,xpos,ypos,this);
+                    if (t!=null) g.setTransform(t);
+               }
+            */
             //nomons
-            if (dmed.mapdata[x][y].nomons) {
-                g.setColor(Color.blue);
-                g.drawRect(xpos, ypos, 31, 31);
+            if (dmEditor.mapdata[x][y].nomons) {
+                graphics2D.setColor(Color.blue);
+                graphics2D.drawRect(xpos, ypos, 31, 31);
             }
             //noghosts
-            else if (dmed.mapdata[x][y].noghosts) {
-                g.setColor(Color.green);
-                g.drawRect(xpos, ypos, 31, 31);
+            else if (dmEditor.mapdata[x][y].noghosts) {
+                graphics2D.setColor(Color.green);
+                graphics2D.drawRect(xpos, ypos, 31, 31);
             }
             //items
-            g.setColor(Color.blue);
-            if (dmed.mapdata[x][y].hasItems && dmed.mapdata[x][y].mapchar != ']' && dmed.mapdata[x][y].mapchar != '[' && dmed.mapdata[x][y].mapchar != 'a' && dmed.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
-                if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 4, ypos + 11);
-                if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 25, ypos + 11);
-                if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 25, ypos + 29);
-                if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 4, ypos + 29);
+            graphics2D.setColor(Color.blue);
+            if (dmEditor.mapdata[x][y].hasItems && dmEditor.mapdata[x][y].mapchar != ']'
+                && dmEditor.mapdata[x][y].mapchar != '[' && dmEditor.mapdata[x][y].mapchar != 'a'
+                && dmEditor.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
+                if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 4, ypos + 11);
+                if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 25, ypos + 11);
+                if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 25, ypos + 29);
+                if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 4, ypos + 29);
             } else { //alcoves
-                if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 14, ypos + 12);
-                if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 4, ypos + 20);
-                if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 14, ypos + 29);
-                if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 24, ypos + 20);
+                if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 14, ypos + 12);
+                if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 4, ypos + 20);
+                if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 14, ypos + 29);
+                if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 24, ypos + 20);
             }
             //mons
-            if (dmed.mapdata[x][y].hasMons) {
-                g.setColor(Color.red);
-                if (dmed.mapdata[x][y].hasmonin[0]) g.drawString("*", xpos + 7, ypos + 14);
-                if (dmed.mapdata[x][y].hasmonin[1]) g.drawString("*", xpos + 22, ypos + 14);
-                if (dmed.mapdata[x][y].hasmonin[2]) g.drawString("*", xpos + 22, ypos + 26);
-                if (dmed.mapdata[x][y].hasmonin[3]) g.drawString("*", xpos + 7, ypos + 26);
-                if (dmed.mapdata[x][y].hasmonin[4]) g.drawString("*", xpos + 14, ypos + 20);
+            if (dmEditor.mapdata[x][y].hasMons) {
+                graphics2D.setColor(Color.red);
+                if (dmEditor.mapdata[x][y].hasmonin[0]) graphics2D.drawString("*", xpos + 7, ypos + 14);
+                if (dmEditor.mapdata[x][y].hasmonin[1]) graphics2D.drawString("*", xpos + 22, ypos + 14);
+                if (dmEditor.mapdata[x][y].hasmonin[2]) graphics2D.drawString("*", xpos + 22, ypos + 26);
+                if (dmEditor.mapdata[x][y].hasmonin[3]) graphics2D.drawString("*", xpos + 7, ypos + 26);
+                if (dmEditor.mapdata[x][y].hasmonin[4]) graphics2D.drawString("*", xpos + 14, ypos + 20);
             }
             //party
-            if (dmed.mapdata[x][y].hasParty) {
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g.setColor(Color.green);
-                g.drawArc(xpos + 2, ypos + 2, 28, 28, 45, 90);
-                g.setColor(Color.yellow);
-                g.drawArc(xpos + 2, ypos + 2, 28, 28, 135, 90);
-                g.setColor(Color.red);
-                g.drawArc(xpos + 2, ypos + 2, 28, 28, 225, 90);
-                g.setColor(Color.blue);
-                g.drawArc(xpos + 2, ypos + 2, 28, 28, 315, 90);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+            if (dmEditor.mapdata[x][y].hasParty) {
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                graphics2D.setColor(Color.green);
+                graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 45, 90);
+                graphics2D.setColor(Color.yellow);
+                graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 135, 90);
+                graphics2D.setColor(Color.red);
+                graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 225, 90);
+                graphics2D.setColor(Color.blue);
+                graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 315, 90);
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
             }
             if (drawpic) {
                 //super.repaint();
                 paint(getGraphics());
             }
         } else {
-            g.setColor(floorcolor);
-            g.fillRect(x * 17, y * 17, 16, 16);
-            Image mappic = getPic(dmed.mapdata[x][y]);
+            graphics2D.setColor(floorColor);
+            graphics2D.fillRect(x * 17, y * 17, 16, 16);
+            Image mappic = getPic(dmEditor.mapdata[x][y]);
             int xpos = x * 17, ypos = y * 17;
-            if (mappic != null) g.drawImage(mappic, xpos, ypos, this);
-                        /*
-                           if (mappic!=null) {
-                                java.awt.geom.AffineTransform t = null;
-                                int side = 0;
-                                if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
-                                else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
-                                if (side!=0) {
-                                        t = g.getTransform();
-                                        g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+8,ypos+8));
-                                }
-                                g.drawImage(mappic,xpos,ypos,this);
-                                if (t!=null) g.setTransform(t);
-                           }
-                        */
+            if (mappic != null) graphics2D.drawImage(mappic, xpos, ypos, this);
+            /*
+               if (mappic!=null) {
+                    java.awt.geom.AffineTransform t = null;
+                    int side = 0;
+                    if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
+                    else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
+                    if (side!=0) {
+                            t = g.getTransform();
+                            g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+8,ypos+8));
+                    }
+                    g.drawImage(mappic,xpos,ypos,this);
+                    if (t!=null) g.setTransform(t);
+               }
+            */
             //nomons
-            if (dmed.mapdata[x][y].nomons) {
-                g.setColor(Color.blue);
-                g.drawRect(xpos, ypos, 15, 15);
+            if (dmEditor.mapdata[x][y].nomons) {
+                graphics2D.setColor(Color.blue);
+                graphics2D.drawRect(xpos, ypos, 15, 15);
             }
             //noghosts
-            else if (dmed.mapdata[x][y].noghosts) {
-                g.setColor(Color.green);
-                g.drawRect(xpos, ypos, 15, 15);
+            else if (dmEditor.mapdata[x][y].noghosts) {
+                graphics2D.setColor(Color.green);
+                graphics2D.drawRect(xpos, ypos, 15, 15);
             }
             //items
-            g.setColor(Color.blue);
-            if (dmed.mapdata[x][y].hasItems && dmed.mapdata[x][y].mapchar != ']' && dmed.mapdata[x][y].mapchar != '[' && dmed.mapdata[x][y].mapchar != 'a' && dmed.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
-                if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 2, ypos + 6);
-                if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 12, ypos + 6);
-                if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 12, ypos + 16);
-                if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 2, ypos + 16);
+            graphics2D.setColor(Color.blue);
+            if (dmEditor.mapdata[x][y].hasItems && dmEditor.mapdata[x][y].mapchar != ']'
+                && dmEditor.mapdata[x][y].mapchar != '[' && dmEditor.mapdata[x][y].mapchar != 'a'
+                && dmEditor.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
+                if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 2, ypos + 6);
+                if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 12, ypos + 6);
+                if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 12, ypos + 16);
+                if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 2, ypos + 16);
             } else { //alcoves
-                if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 7, ypos + 6);
-                if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 2, ypos + 11);
-                if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 7, ypos + 16);
-                if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 12, ypos + 11);
+                if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 7, ypos + 6);
+                if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 2, ypos + 11);
+                if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 7, ypos + 16);
+                if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 12, ypos + 11);
             }
             //mons
-            if (dmed.mapdata[x][y].hasMons) {
-                g.setColor(Color.red);
-                if (dmed.mapdata[x][y].hasmonin[0]) g.drawString("*", xpos + 4, ypos + 8);
-                if (dmed.mapdata[x][y].hasmonin[1]) g.drawString("*", xpos + 10, ypos + 8);
-                if (dmed.mapdata[x][y].hasmonin[2]) g.drawString("*", xpos + 10, ypos + 14);
-                if (dmed.mapdata[x][y].hasmonin[3]) g.drawString("*", xpos + 4, ypos + 14);
-                if (dmed.mapdata[x][y].hasmonin[4]) g.drawString("*", xpos + 7, ypos + 11);
+            if (dmEditor.mapdata[x][y].hasMons) {
+                graphics2D.setColor(Color.red);
+                if (dmEditor.mapdata[x][y].hasmonin[0]) graphics2D.drawString("*", xpos + 4, ypos + 8);
+                if (dmEditor.mapdata[x][y].hasmonin[1]) graphics2D.drawString("*", xpos + 10, ypos + 8);
+                if (dmEditor.mapdata[x][y].hasmonin[2]) graphics2D.drawString("*", xpos + 10, ypos + 14);
+                if (dmEditor.mapdata[x][y].hasmonin[3]) graphics2D.drawString("*", xpos + 4, ypos + 14);
+                if (dmEditor.mapdata[x][y].hasmonin[4]) graphics2D.drawString("*", xpos + 7, ypos + 11);
             }
             //party
-            if (dmed.mapdata[x][y].hasParty) {
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g.setColor(Color.green);
-                g.drawArc(xpos + 1, ypos + 1, 14, 14, 45, 90);
-                g.setColor(Color.yellow);
-                g.drawArc(xpos + 1, ypos + 1, 14, 14, 135, 90);
-                g.setColor(Color.red);
-                g.drawArc(xpos + 1, ypos + 1, 14, 14, 225, 90);
-                g.setColor(Color.blue);
-                g.drawArc(xpos + 1, ypos + 1, 14, 14, 315, 90);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+            if (dmEditor.mapdata[x][y].hasParty) {
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                graphics2D.setColor(Color.green);
+                graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 45, 90);
+                graphics2D.setColor(Color.yellow);
+                graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 135, 90);
+                graphics2D.setColor(Color.red);
+                graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 225, 90);
+                graphics2D.setColor(Color.blue);
+                graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 315, 90);
+                graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
             }
             if (drawpic) {
                 //super.repaint();
@@ -278,292 +287,298 @@ class MapPanel extends JPanel {
     }
     
     public void paint(Graphics ong) {
-        if (!needupdate) {
+        if (!isUpdatedNeeded) {
             ong.drawImage(pic, 0, 0, this);
             if (!targets.isEmpty()) drawTargets(ong);
-            if (dmed.SQUARELOCKED) {
+            if (dmEditor.SQUARELOCKED) {
                 int size = 32;
-                if (dmed.ZOOMING) size = 16;
+                if (dmEditor.ZOOMING) size = 16;
                 ong.setColor(Color.white);
                 ((Graphics2D) ong).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                ong.drawOval((int) (dmed.lockx * (size + 1) - 3 * size / 8), (int) (dmed.locky * (size + 1) - 3 * size / 8), (int) (size * 1.75), (int) (size * 1.75));
+                ong.drawOval((int) (dmEditor.lockx * (size + 1) - 3 * size / 8), (int) (dmEditor.locky * (size + 1) - 3 * size / 8), (int) (size * 1.75), (int) (size * 1.75));
                 ((Graphics2D) ong).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
             }
             return;
-        } else if (!dmed.ZOOMING) {
-            g.setColor(floorcolor);
-            g.fillRect(0, 0, dmed.MAPWIDTH * 33, dmed.MAPHEIGHT * 33);
-            g.setFont(bigfont);
+        } else if (!dmEditor.ZOOMING) {
+            graphics2D.setColor(floorColor);
+            graphics2D.fillRect(0, 0, DMEditor.MAPWIDTH * 33, DMEditor.MAPHEIGHT * 33);
+            graphics2D.setFont(bigFont);
             Image mappic;
             int xpos = 0, ypos = 0;
-            for (int y = 0; y < dmed.MAPHEIGHT; y++) {
-                for (int x = 0; x < dmed.MAPWIDTH; x++) {
-                    mappic = getPic(dmed.mapdata[x][y]);
+            for (int y = 0; y < DMEditor.MAPHEIGHT; y++) {
+                for (int x = 0; x < DMEditor.MAPWIDTH; x++) {
+                    mappic = getPic(dmEditor.mapdata[x][y]);
                     xpos = x * 33;
                     ypos = y * 33;
-                    if (mappic != null) g.drawImage(mappic, xpos, ypos, this);
-                           /*
-                           if (mappic!=null) {
-                                java.awt.geom.AffineTransform t = null;
-                                int side = 0;
-                                if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
-                                else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
-                                if (side!=0) {
-                                        t = g.getTransform();
-                                        g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+16,ypos+16));
-                                }
-                                g.drawImage(mappic,xpos,ypos,this);
-                                if (t!=null) g.setTransform(t);
-                           }
-                           */
+                    if (mappic != null) graphics2D.drawImage(mappic, xpos, ypos, this);
+                    /*
+                       if (mappic!=null) {
+                            java.awt.geom.AffineTransform t = null;
+                            int side = 0;
+                            if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
+                            else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
+                            if (side!=0) {
+                                    t = g.getTransform();
+                                    g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+16,ypos+16));
+                            }
+                            g.drawImage(mappic,xpos,ypos,this);
+                            if (t!=null) g.setTransform(t);
+                       }
+                    */
                     //nomons
-                    if (dmed.mapdata[x][y].nomons) {
-                        g.setColor(Color.blue);
-                        g.drawRect(xpos, ypos, 31, 31);
+                    if (dmEditor.mapdata[x][y].nomons) {
+                        graphics2D.setColor(Color.blue);
+                        graphics2D.drawRect(xpos, ypos, 31, 31);
                     }
                     //noghosts
-                    else if (dmed.mapdata[x][y].noghosts) {
-                        g.setColor(Color.green);
-                        g.drawRect(xpos, ypos, 31, 31);
+                    else if (dmEditor.mapdata[x][y].noghosts) {
+                        graphics2D.setColor(Color.green);
+                        graphics2D.drawRect(xpos, ypos, 31, 31);
                     }
                     //items
-                    g.setColor(Color.blue);
-                    if (dmed.mapdata[x][y].hasItems && dmed.mapdata[x][y].mapchar != ']' && dmed.mapdata[x][y].mapchar != '[' && dmed.mapdata[x][y].mapchar != 'a' && dmed.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
-                        if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 4, ypos + 11);
-                        if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 25, ypos + 11);
-                        if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 25, ypos + 29);
-                        if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 4, ypos + 29);
+                    graphics2D.setColor(Color.blue);
+                    if (dmEditor.mapdata[x][y].hasItems && dmEditor.mapdata[x][y].mapchar != ']'
+                        && dmEditor.mapdata[x][y].mapchar != '[' && dmEditor.mapdata[x][y].mapchar != 'a'
+                        && dmEditor.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
+                        if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 4, ypos + 11);
+                        if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 25, ypos + 11);
+                        if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 25, ypos + 29);
+                        if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 4, ypos + 29);
                     } else { //alcoves
-                        if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 14, ypos + 12);
-                        if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 4, ypos + 20);
-                        if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 14, ypos + 29);
-                        if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 24, ypos + 20);
+                        if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 14, ypos + 12);
+                        if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 4, ypos + 20);
+                        if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 14, ypos + 29);
+                        if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 24, ypos + 20);
                     }
                     //mons
-                    if (dmed.mapdata[x][y].hasMons) {
-                        g.setColor(Color.red);
-                        if (dmed.mapdata[x][y].hasmonin[0]) g.drawString("*", xpos + 7, ypos + 14);
-                        if (dmed.mapdata[x][y].hasmonin[1]) g.drawString("*", xpos + 22, ypos + 14);
-                        if (dmed.mapdata[x][y].hasmonin[2]) g.drawString("*", xpos + 22, ypos + 26);
-                        if (dmed.mapdata[x][y].hasmonin[3]) g.drawString("*", xpos + 7, ypos + 26);
-                        if (dmed.mapdata[x][y].hasmonin[4]) g.drawString("*", xpos + 14, ypos + 20);
+                    if (dmEditor.mapdata[x][y].hasMons) {
+                        graphics2D.setColor(Color.red);
+                        if (dmEditor.mapdata[x][y].hasmonin[0]) graphics2D.drawString("*", xpos + 7, ypos + 14);
+                        if (dmEditor.mapdata[x][y].hasmonin[1]) graphics2D.drawString("*", xpos + 22, ypos + 14);
+                        if (dmEditor.mapdata[x][y].hasmonin[2]) graphics2D.drawString("*", xpos + 22, ypos + 26);
+                        if (dmEditor.mapdata[x][y].hasmonin[3]) graphics2D.drawString("*", xpos + 7, ypos + 26);
+                        if (dmEditor.mapdata[x][y].hasmonin[4]) graphics2D.drawString("*", xpos + 14, ypos + 20);
                     }
                     //party
-                    if (dmed.mapdata[x][y].hasParty) {
-                        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                        g.setColor(Color.green);
-                        g.drawArc(xpos + 2, ypos + 2, 28, 28, 45, 90);
-                        g.setColor(Color.yellow);
-                        g.drawArc(xpos + 2, ypos + 2, 28, 28, 135, 90);
-                        g.setColor(Color.red);
-                        g.drawArc(xpos + 2, ypos + 2, 28, 28, 225, 90);
-                        g.setColor(Color.blue);
-                        g.drawArc(xpos + 2, ypos + 2, 28, 28, 315, 90);
-                        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+                    if (dmEditor.mapdata[x][y].hasParty) {
+                        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                        graphics2D.setColor(Color.green);
+                        graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 45, 90);
+                        graphics2D.setColor(Color.yellow);
+                        graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 135, 90);
+                        graphics2D.setColor(Color.red);
+                        graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 225, 90);
+                        graphics2D.setColor(Color.blue);
+                        graphics2D.drawArc(xpos + 2, ypos + 2, 28, 28, 315, 90);
+                        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
                     }
                 }
             }
         } else { //ZOOMING
-            g.setColor(floorcolor);
-            g.fillRect(0, 0, dmed.MAPWIDTH * 17, dmed.MAPHEIGHT * 17);
+            graphics2D.setColor(floorColor);
+            graphics2D.fillRect(0, 0, DMEditor.MAPWIDTH * 17, DMEditor.MAPHEIGHT * 17);
             Image mappic;
             int xpos = 0, ypos = 0;
-            for (int y = 0; y < dmed.MAPHEIGHT; y++) {
-                for (int x = 0; x < dmed.MAPWIDTH; x++) {
-                    mappic = getPic(dmed.mapdata[x][y]);
+            for (int y = 0; y < DMEditor.MAPHEIGHT; y++) {
+                for (int x = 0; x < DMEditor.MAPWIDTH; x++) {
+                    mappic = getPic(dmEditor.mapdata[x][y]);
                     xpos = x * 17;
                     ypos = y * 17;
-                    if (mappic != null) g.drawImage(mappic, xpos, ypos, this);
-                           /*
-                           if (mappic!=null) {
-                                java.awt.geom.AffineTransform t = null;
-                                int side = 0;
-                                if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
-                                else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
-                                if (side!=0) {
-                                        t = g.getTransform();
-                                        g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+8,ypos+8));
-                                }
-                                g.drawImage(mappic,xpos,ypos,this);
-                                if (t!=null) g.setTransform(t);
-                           }
-                           */
+                    if (mappic != null) graphics2D.drawImage(mappic, xpos, ypos, this);
+                   /*
+                       if (mappic!=null) {
+                            java.awt.geom.AffineTransform t = null;
+                            int side = 0;
+                            if (dmed.mapdata[x][y].mapchar=='d') side = ((DoorData)dmed.mapdata[x][y]).side;
+                            else if (dmed.mapdata[x][y] instanceof SidedWallData) side = ((SidedWallData)dmed.mapdata[x][y]).side;
+                            if (side!=0) {
+                                    t = g.getTransform();
+                                    g.setTransform(java.awt.geom.AffineTransform.getRotateInstance(-Math.PI/2.0*side,xpos+8,ypos+8));
+                            }
+                            g.drawImage(mappic,xpos,ypos,this);
+                            if (t!=null) g.setTransform(t);
+                       }
+                   */
                     //nomons
-                    if (dmed.mapdata[x][y].nomons) {
-                        g.setColor(Color.blue);
-                        g.drawRect(xpos, ypos, 15, 15);
+                    if (dmEditor.mapdata[x][y].nomons) {
+                        graphics2D.setColor(Color.blue);
+                        graphics2D.drawRect(xpos, ypos, 15, 15);
                     }
                     //noghosts
-                    else if (dmed.mapdata[x][y].noghosts) {
-                        g.setColor(Color.green);
-                        g.drawRect(xpos, ypos, 15, 15);
+                    else if (dmEditor.mapdata[x][y].noghosts) {
+                        graphics2D.setColor(Color.green);
+                        graphics2D.drawRect(xpos, ypos, 15, 15);
                     }
                     //items
-                    g.setColor(Color.blue);
-                    if (dmed.mapdata[x][y].hasItems && dmed.mapdata[x][y].mapchar != ']' && dmed.mapdata[x][y].mapchar != '[' && dmed.mapdata[x][y].mapchar != 'a' && dmed.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
-                        if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 2, ypos + 6);
-                        if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 12, ypos + 6);
-                        if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 12, ypos + 16);
-                        if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 2, ypos + 16);
+                    graphics2D.setColor(Color.blue);
+                    if (dmEditor.mapdata[x][y].hasItems && dmEditor.mapdata[x][y].mapchar != ']'
+                        && dmEditor.mapdata[x][y].mapchar != '[' && dmEditor.mapdata[x][y].mapchar != 'a'
+                        && dmEditor.mapdata[x][y].mapchar != 'f') { //not alcoves or fountain
+                        if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 2, ypos + 6);
+                        if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 12, ypos + 6);
+                        if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 12, ypos + 16);
+                        if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 2, ypos + 16);
                     } else { //alcoves
-                        if (dmed.mapdata[x][y].numitemsin[0] > 0) g.drawString("*", xpos + 7, ypos + 6);
-                        if (dmed.mapdata[x][y].numitemsin[1] > 0) g.drawString("*", xpos + 2, ypos + 11);
-                        if (dmed.mapdata[x][y].numitemsin[2] > 0) g.drawString("*", xpos + 7, ypos + 16);
-                        if (dmed.mapdata[x][y].numitemsin[3] > 0) g.drawString("*", xpos + 12, ypos + 11);
+                        if (dmEditor.mapdata[x][y].numitemsin[0] > 0) graphics2D.drawString("*", xpos + 7, ypos + 6);
+                        if (dmEditor.mapdata[x][y].numitemsin[1] > 0) graphics2D.drawString("*", xpos + 2, ypos + 11);
+                        if (dmEditor.mapdata[x][y].numitemsin[2] > 0) graphics2D.drawString("*", xpos + 7, ypos + 16);
+                        if (dmEditor.mapdata[x][y].numitemsin[3] > 0) graphics2D.drawString("*", xpos + 12, ypos + 11);
                     }
                     //mons
-                    if (dmed.mapdata[x][y].hasMons) {
-                        g.setColor(Color.red);
-                        if (dmed.mapdata[x][y].hasmonin[0]) g.drawString("*", xpos + 4, ypos + 8);
-                        if (dmed.mapdata[x][y].hasmonin[1]) g.drawString("*", xpos + 10, ypos + 8);
-                        if (dmed.mapdata[x][y].hasmonin[2]) g.drawString("*", xpos + 10, ypos + 14);
-                        if (dmed.mapdata[x][y].hasmonin[3]) g.drawString("*", xpos + 4, ypos + 14);
-                        if (dmed.mapdata[x][y].hasmonin[4]) g.drawString("*", xpos + 7, ypos + 11);
+                    if (dmEditor.mapdata[x][y].hasMons) {
+                        graphics2D.setColor(Color.red);
+                        if (dmEditor.mapdata[x][y].hasmonin[0]) graphics2D.drawString("*", xpos + 4, ypos + 8);
+                        if (dmEditor.mapdata[x][y].hasmonin[1]) graphics2D.drawString("*", xpos + 10, ypos + 8);
+                        if (dmEditor.mapdata[x][y].hasmonin[2]) graphics2D.drawString("*", xpos + 10, ypos + 14);
+                        if (dmEditor.mapdata[x][y].hasmonin[3]) graphics2D.drawString("*", xpos + 4, ypos + 14);
+                        if (dmEditor.mapdata[x][y].hasmonin[4]) graphics2D.drawString("*", xpos + 7, ypos + 11);
                     }
                     //party
-                    if (dmed.mapdata[x][y].hasParty) {
-                        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                        g.setColor(Color.green);
-                        g.drawArc(xpos + 1, ypos + 1, 14, 14, 45, 90);
-                        g.setColor(Color.yellow);
-                        g.drawArc(xpos + 1, ypos + 1, 14, 14, 135, 90);
-                        g.setColor(Color.red);
-                        g.drawArc(xpos + 1, ypos + 1, 14, 14, 225, 90);
-                        g.setColor(Color.blue);
-                        g.drawArc(xpos + 1, ypos + 1, 14, 14, 315, 90);
-                        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+                    if (dmEditor.mapdata[x][y].hasParty) {
+                        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                        graphics2D.setColor(Color.green);
+                        graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 45, 90);
+                        graphics2D.setColor(Color.yellow);
+                        graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 135, 90);
+                        graphics2D.setColor(Color.red);
+                        graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 225, 90);
+                        graphics2D.setColor(Color.blue);
+                        graphics2D.drawArc(xpos + 1, ypos + 1, 14, 14, 315, 90);
+                        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
                     }
                 }
             }
         }
-        needupdate = false;
+        isUpdatedNeeded = false;
         ong.drawImage(pic, 0, 0, this);
         if (!targets.isEmpty()) drawTargets(ong);
-        if (dmed.SQUARELOCKED) {
+        if (dmEditor.SQUARELOCKED) {
             int size = 32;
-            if (dmed.ZOOMING) size = 16;
+            if (dmEditor.ZOOMING) size = 16;
             ong.setColor(Color.white);
             ((Graphics2D) ong).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            ong.drawOval((int) (dmed.lockx * (size + 1) - 3 * size / 8), (int) (dmed.locky * (size + 1) - 3 * size / 8), (int) (size * 1.75), (int) (size * 1.75));
+            ong.drawOval((int) (dmEditor.lockx * (size + 1) - 3 * size / 8), (int) (dmEditor.locky * (size + 1) - 3 * size / 8), (int) (size * 1.75), (int) (size * 1.75));
             ((Graphics2D) ong).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         }
     }
     
-    private void drawTargets(Graphics g) {
+    private void drawTargets(Graphics graphics) {
         //iterate thru targets arraylist, drawing red borders (and maybe actual arrows and up/down level indicators)
         int size = 32;
-        if (dmed.ZOOMING) size = 16;
-        Graphics2D gg = (Graphics2D) g;
+        if (dmEditor.ZOOMING) size = 16;
+        Graphics2D gg = (Graphics2D) graphics;
         gg.setColor(Color.red);
         Target target;
         int numtargets = targets.size();
-        for (int i = 0; i < numtargets; i++) {
-            target = (Target) targets.get(i);
-            if (target.targetl == dmed.currentlevel) {
+        for (Object object : targets) {
+            target = (Target) object;
+            if (target.targetl == DMEditor.currentlevel) {
                 gg.drawRect(target.targetx * (size + 1), target.targety * (size + 1), size - 1, size - 1);
             }
         }
-        if (!dmed.ZOOMING) gg.setStroke(arrowstroke);
-        for (int i = 0; i < numtargets; i++) {
-            target = (Target) targets.get(i);
-            if (target.targetl == dmed.currentlevel) {
-                gg.drawLine(target.originx * (size + 1) + size / 2, target.originy * (size + 1) + size / 2, target.targetx * (size + 1) + size / 2, target.targety * (size + 1) + size / 2);
+        if (!dmEditor.ZOOMING) gg.setStroke(arrowStroke);
+        for (Object object : targets) {
+            target = (Target) object;
+            if (target.targetl == DMEditor.currentlevel) {
+                gg.drawLine(target.originX * (size + 1) + size / 2, target.originY * (size + 1) + size / 2,
+                    target.targetx * (size + 1) + size / 2, target.targety * (size + 1) + size / 2);
             } else {
                 gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                gg.drawOval((int) (target.originx * (size + 1) - size / 4), (int) (target.originy * (size + 1) - size / 4), (int) (size * 1.5), (int) (size * 1.5));
+                gg.drawOval((int) (target.originX * (size + 1) - size / 4), (int) (target.originY * (size + 1) - size / 4),
+                    (int) (size * 1.5), (int) (size * 1.5));
                 gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
             }
         }
-        if (!dmed.ZOOMING) gg.setStroke(normalstroke);
+        if (!dmEditor.ZOOMING) gg.setStroke(normalStroke);
     }
     
-    private Image getPic(MapData m) {
-        if (m.mapchar == '1') {
-            if (!dmed.ZOOMING) return WallIcon.getImage();
+    private Image getPic(MapData mapData) {
+        if (mapData.mapchar == '1') {
+            if (!dmEditor.ZOOMING) return WallIcon.getImage();
             else return WallIconS.getImage();
-        } else if (m.mapchar == '0') return null;
-        else if (m.mapchar == '2') {
-            if (!dmed.ZOOMING) return FakeWallIcon.getImage();
+        } else if (mapData.mapchar == '0') return null;
+        else if (mapData.mapchar == '2') {
+            if (!dmEditor.ZOOMING) return FakeWallIcon.getImage();
             else return FakeWallIconS.getImage();
-        } else if (m.mapchar == '>') {
-            if (!dmed.ZOOMING) {
-                if (((StairsData) m).goesUp) return StairsUpIcon.getImage();
+        } else if (mapData.mapchar == '>') {
+            if (!dmEditor.ZOOMING) {
+                if (((StairsData) mapData).goesUp) return StairsUpIcon.getImage();
                 else return StairsDownIcon.getImage();
             } else {
-                if (((StairsData) m).goesUp) return StairsUpIconS.getImage();
+                if (((StairsData) mapData).goesUp) return StairsUpIconS.getImage();
                 else return StairsDownIconS.getImage();
             }
-        } else if (m.mapchar == 'd') {
-            if (!dmed.ZOOMING) return DoorIcon.getImage();
+        } else if (mapData.mapchar == 'd') {
+            if (!dmEditor.ZOOMING) return DoorIcon.getImage();
             else return DoorIconS.getImage();
-        } else if (m.mapchar == 's') {
-            if (!dmed.ZOOMING) return FloorSwitchIcon.getImage();
+        } else if (mapData.mapchar == 's') {
+            if (!dmEditor.ZOOMING) return FloorSwitchIcon.getImage();
             else return FloorSwitchIconS.getImage();
-        } else if (m.mapchar == '/') {
-            if (!dmed.ZOOMING) return WallSwitchIcon.getImage();
+        } else if (mapData.mapchar == '/') {
+            if (!dmEditor.ZOOMING) return WallSwitchIcon.getImage();
             else return WallSwitchIconS.getImage();
-        } else if (m.mapchar == 't') {
-            if (!dmed.ZOOMING) return TeleportIcon.getImage();
+        } else if (mapData.mapchar == 't') {
+            if (!dmEditor.ZOOMING) return TeleportIcon.getImage();
             else return TeleportIconS.getImage();
-        } else if (m.mapchar == ']' || m.mapchar == '[') {
-            if (!dmed.ZOOMING) return AlcoveIcon.getImage();
+        } else if (mapData.mapchar == ']' || mapData.mapchar == '[') {
+            if (!dmEditor.ZOOMING) return AlcoveIcon.getImage();
             else return AlcoveIconS.getImage();
-        } else if (m.mapchar == 'a') {
-            if (!dmed.ZOOMING) return AltarIcon.getImage();
+        } else if (mapData.mapchar == 'a') {
+            if (!dmEditor.ZOOMING) return AltarIcon.getImage();
             else return AltarIconS.getImage();
-        } else if (m.mapchar == 'f') {
-            if (!dmed.ZOOMING) return FountainIcon.getImage();
+        } else if (mapData.mapchar == 'f') {
+            if (!dmEditor.ZOOMING) return FountainIcon.getImage();
             else return FountainIconS.getImage();
-        } else if (m.mapchar == 'p') {
-            if (!dmed.ZOOMING) return PitIcon.getImage();
+        } else if (mapData.mapchar == 'p') {
+            if (!dmEditor.ZOOMING) return PitIcon.getImage();
             else return PitIconS.getImage();
-        } else if (m.mapchar == 'l') {
-            if (!dmed.ZOOMING) return LauncherIcon.getImage();
+        } else if (mapData.mapchar == 'l') {
+            if (!dmEditor.ZOOMING) return LauncherIcon.getImage();
             else return LauncherIconS.getImage();
-        } else if (m.mapchar == 'm') {
-            if (!dmed.ZOOMING) return MirrorIcon.getImage();
+        } else if (mapData.mapchar == 'm') {
+            if (!dmEditor.ZOOMING) return MirrorIcon.getImage();
             else return MirrorIconS.getImage();
-        } else if (m.mapchar == 'g') {
-            if (!dmed.ZOOMING) return GeneratorIcon.getImage();
+        } else if (mapData.mapchar == 'g') {
+            if (!dmEditor.ZOOMING) return GeneratorIcon.getImage();
             else return GeneratorIconS.getImage();
-        } else if (m.mapchar == 'w') {
-            if (!dmed.ZOOMING) return WritingIcon.getImage();
+        } else if (mapData.mapchar == 'w') {
+            if (!dmEditor.ZOOMING) return WritingIcon.getImage();
             else return WritingIconS.getImage();
-        } else if (m.mapchar == 'S') {
-            if (!dmed.ZOOMING) return MultFloorSwitchIcon.getImage();
+        } else if (mapData.mapchar == 'S') {
+            if (!dmEditor.ZOOMING) return MultFloorSwitchIcon.getImage();
             else return MultFloorSwitchIconS.getImage();
-        } else if (m.mapchar == '\\') {
-            if (!dmed.ZOOMING) return MultWallSwitchIcon.getImage();
+        } else if (mapData.mapchar == '\\') {
+            if (!dmEditor.ZOOMING) return MultWallSwitchIcon.getImage();
             else return MultWallSwitchIconS.getImage();
-        } else if (m.mapchar == '}') {
-            if (!dmed.ZOOMING) return SconceIcon.getImage();
+        } else if (mapData.mapchar == '}') {
+            if (!dmEditor.ZOOMING) return SconceIcon.getImage();
             else return SconceIconS.getImage();
-        } else if (m.mapchar == 'D') {
-            if (!dmed.ZOOMING) return DecorationIcon.getImage();
+        } else if (mapData.mapchar == 'D') {
+            if (!dmEditor.ZOOMING) return DecorationIcon.getImage();
             else return DecorationIconS.getImage();
-        } else if (m.mapchar == 'F') {
-            if (!dmed.ZOOMING) return FDecorationIcon.getImage();
+        } else if (mapData.mapchar == 'F') {
+            if (!dmEditor.ZOOMING) return FDecorationIcon.getImage();
             else return FDecorationIconS.getImage();
-        } else if (m.mapchar == 'P') {
-            if (!dmed.ZOOMING) return PillarIcon.getImage();
+        } else if (mapData.mapchar == 'P') {
+            if (!dmEditor.ZOOMING) return PillarIcon.getImage();
             else return PillarIconS.getImage();
-        } else if (m.mapchar == 'i') {
-            if (!dmed.ZOOMING) return InvisibleWallIcon.getImage();
+        } else if (mapData.mapchar == 'i') {
+            if (!dmEditor.ZOOMING) return InvisibleWallIcon.getImage();
             else return InvisibleWallIconS.getImage();
-        } else if (m.mapchar == 'E') {
-            if (!dmed.ZOOMING) return EventIcon.getImage();
+        } else if (mapData.mapchar == 'E') {
+            if (!dmEditor.ZOOMING) return EventIcon.getImage();
             else return EventIconS.getImage();
-        } else if (m.mapchar == '!') {
-            if (!dmed.ZOOMING) return StormIcon.getImage();
+        } else if (mapData.mapchar == '!') {
+            if (!dmEditor.ZOOMING) return StormIcon.getImage();
             else return StormIconS.getImage();
-        } else if (m.mapchar == 'G') {
-            if (!dmed.ZOOMING) return GemIcon.getImage();
+        } else if (mapData.mapchar == 'G') {
+            if (!dmEditor.ZOOMING) return GemIcon.getImage();
             else return GemIconS.getImage();
-        } else if (m.mapchar == 'y') {
-            if (!dmed.ZOOMING) return FulYaIcon.getImage();
+        } else if (mapData.mapchar == 'y') {
+            if (!dmEditor.ZOOMING) return FulYaIcon.getImage();
             else return FulYaIconS.getImage();
-        } else if (m.mapchar == 'W') {
-            if (!dmed.ZOOMING) return GameWinIcon.getImage();
+        } else if (mapData.mapchar == 'W') {
+            if (!dmEditor.ZOOMING) return GameWinIcon.getImage();
             else return GameWinIconS.getImage();
         } else return null;
     }
@@ -574,30 +589,30 @@ class MapPanel extends JPanel {
         return true;
     }
     
-    public boolean doTargets(MapData md, int x, int y) {
+    public boolean doTargets(MapData mapData, int x, int y) {
         int oldsize = targets.size();
-        if (md.mapchar == 't') {
-            targets.add(new Target(x, y, ((TeleportData) md).targetlevel, ((TeleportData) md).targetx, ((TeleportData) md).targety));
-        } else if (md.mapchar == '/') {
-            targets.add(new Target(x, y, ((WallSwitchData) md).targetlevel, ((WallSwitchData) md).targetx, ((WallSwitchData) md).targety));
-        } else if (md.mapchar == 's') {
-            targets.add(new Target(x, y, ((FloorSwitchData) md).targetlevel, ((FloorSwitchData) md).targetx, ((FloorSwitchData) md).targety));
-        } else if (md.mapchar == '\\') {
-            MultWallSwitchData mwd = (MultWallSwitchData) md;
+        if (mapData.mapchar == 't') {
+            targets.add(new Target(x, y, ((TeleportData) mapData).targetlevel, ((TeleportData) mapData).targetx, ((TeleportData) mapData).targety));
+        } else if (mapData.mapchar == '/') {
+            targets.add(new Target(x, y, ((WallSwitchData) mapData).targetlevel, ((WallSwitchData) mapData).targetx, ((WallSwitchData) mapData).targety));
+        } else if (mapData.mapchar == 's') {
+            targets.add(new Target(x, y, ((FloorSwitchData) mapData).targetlevel, ((FloorSwitchData) mapData).targetx, ((FloorSwitchData) mapData).targety));
+        } else if (mapData.mapchar == '\\') {
+            MultWallSwitchData multWallSwitchData = (MultWallSwitchData) mapData;
+            int[] target;
+            for (int i = 0; i < multWallSwitchData.switchlist.size(); i++) {
+                target = multWallSwitchData.getTarget(i);
+                targets.add(new Target(x, y, target[0], target[1], target[2]));
+            }
+        } else if (mapData.mapchar == 'S') {
+            MultFloorSwitchData mwd = (MultFloorSwitchData) mapData;
             int[] target;
             for (int i = 0; i < mwd.switchlist.size(); i++) {
                 target = mwd.getTarget(i);
                 targets.add(new Target(x, y, target[0], target[1], target[2]));
             }
-        } else if (md.mapchar == 'S') {
-            MultFloorSwitchData mwd = (MultFloorSwitchData) md;
-            int[] target;
-            for (int i = 0; i < mwd.switchlist.size(); i++) {
-                target = mwd.getTarget(i);
-                targets.add(new Target(x, y, target[0], target[1], target[2]));
-            }
-        } else if (md.mapchar == '}') {
-            SconceData d = (SconceData) md;
+        } else if (mapData.mapchar == '}') {
+            SconceData d = (SconceData) mapData;
             if (d.isSwitch) {
                 int[] target;
                 for (int i = 0; i < d.sconceswitch.switchlist.size(); i++) {
@@ -605,8 +620,8 @@ class MapPanel extends JPanel {
                     targets.add(new Target(x, y, target[0], target[1], target[2]));
                 }
             }
-        } else if (md instanceof OneAlcoveData) {
-            OneAlcoveData d = (OneAlcoveData) md;
+        } else if (mapData instanceof OneAlcoveData) {
+            OneAlcoveData d = (OneAlcoveData) mapData;
             if (d.isSwitch) {
                 int[] target;
                 for (int i = 0; i < d.alcoveswitchdata.switchlist.size(); i++) {
@@ -614,8 +629,8 @@ class MapPanel extends JPanel {
                     targets.add(new Target(x, y, target[0], target[1], target[2]));
                 }
             }
-        } else if (md.mapchar == '[') {
-            AlcoveData d = (AlcoveData) md;
+        } else if (mapData.mapchar == '[') {
+            AlcoveData d = (AlcoveData) mapData;
             if (d.isSwitch) {
                 int[] target;
                 for (int i = 0; i < d.alcoveswitchdata.switchlist.size(); i++) {
@@ -623,8 +638,8 @@ class MapPanel extends JPanel {
                     targets.add(new Target(x, y, target[0], target[1], target[2]));
                 }
             }
-        } else if (md.mapchar == 'f') {
-            FountainData d = (FountainData) md;
+        } else if (mapData.mapchar == 'f') {
+            FountainData d = (FountainData) mapData;
             if (d.fountainswitch != null) {
                 int[] target;
                 for (int i = 0; i < d.fountainswitch.switchlist.size(); i++) {
@@ -632,8 +647,8 @@ class MapPanel extends JPanel {
                     targets.add(new Target(x, y, target[0], target[1], target[2]));
                 }
             }
-        } else if (md.mapchar == 'E') {
-            EventSquareData ed = (EventSquareData) md;
+        } else if (mapData.mapchar == 'E') {
+            EventSquareData ed = (EventSquareData) mapData;
             Action a;
             for (int i = 0; i < ed.choices.length; i++) {
                 for (int j = 0; j < ed.choices[i].actions.size(); j++) {
@@ -644,25 +659,25 @@ class MapPanel extends JPanel {
                 }
             }
             
-        } else if (md.mapchar == 'm') {
-            if (((MirrorData) md).target != null)
-                targets.add(new Target(x, y, ((MirrorData) md).target.level, ((MirrorData) md).target.x, ((MirrorData) md).target.y));
-        } else if (md.mapchar == 'y') {
-            FulYaPitData fypit = (FulYaPitData) md;
+        } else if (mapData.mapchar == 'm') {
+            if (((MirrorData) mapData).target != null)
+                targets.add(new Target(x, y, ((MirrorData) mapData).target.level, ((MirrorData) mapData).target.x, ((MirrorData) mapData).target.y));
+        } else if (mapData.mapchar == 'y') {
+            FulYaPitData fypit = (FulYaPitData) mapData;
             targets.add(new Target(x, y, fypit.keytarget.level, fypit.keytarget.x, fypit.keytarget.y));
             targets.add(new Target(x, y, fypit.nonkeytarget.level, fypit.nonkeytarget.x, fypit.nonkeytarget.y));
         }
-        if (targets.size() != oldsize) return true;
-        else return false;
+        
+        return targets.size() != oldsize;
     }
     
-    private class Target {
-        int originx, originy;
+    private static class Target {
+        int originX, originY;
         int targetl, targetx, targety;
         
         public Target(int ox, int oy, int tl, int tx, int ty) {
-            originx = ox;
-            originy = oy;
+            originX = ox;
+            originY = oy;
             targetl = tl;
             targetx = tx;
             targety = ty;
